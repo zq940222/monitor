@@ -1,0 +1,113 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Instrument_type')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select name="row[instrument_type]" id="c-instrument_type" class="form-control" onchange="changeType()">
+                <option value="1" checked>{:__('Instrument_type 1')}</option>
+                <option value="2">{:__('Instrument_type 2')}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Equipment_addr')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-equipment_addr" class="form-control" name="row[equipment_addr]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Monitor_object')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-monitor_object" data-rule="required" class="form-control" name="row[monitor_object]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Gateway_addr')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-gateway_addr" data-rule="required" class="form-control" name="row[gateway_addr]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Hial')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-HIAL" class="form-control" name="row[HIAL]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Loal')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-LoAL" class="form-control" name="row[LoAL]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Effective_range')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select name="row[effective_range]" id="c-effective_range" class="form-control">
+                <option value="null" selected>无</option>
+                <option value="1">0 - 25</option>
+                <option value="2">0 - 1.6</option>
+                <option value="3">-0.1 - 0</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Unit')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select name="row[unit]" id="c-unit" class="form-control">
+                <option value="0" selected>--请选择--</option>
+                <option value="1" >MPa</option>
+                <option value="2">L</option>
+                <option value="3">m3</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Decimal_offset')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-decimal_offset" class="form-control" name="row[decimal_offset]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Alias')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-alias" class="form-control" name="row[alias]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <div class="radio">
+                <label for="row[status]-1"><input id="row[status]-1" name="row[status]" type="radio" value="1" checked /> 启用</label>
+                <label for="row[status]-2"><input id="row[status]-2" name="row[status]" type="radio" value="-1" /> 禁用</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">单位/楼/层:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="form-inline" data-toggle="cxselect" data-selects="first,second,third">
+                <select class="first form-control" name="row[company_id]" data-url="ajax/company" data-rule="required"></select>
+                <select class="second form-control" name="row[building_id]" data-url="ajax/building" data-query-name="company_id" data-rule="required"></select>
+                <select class="third form-control" name="row[floor_id]" data-url="ajax/floor" data-query-name="building_id" data-rule="required"></select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
+<script>
+    function changeType() {
+        var type = $("#c-instrument_type").val();
+        if (type == 1){
+            $("#c-effective_range").attr('disabled',false);
+        }else{
+            $("#c-effective_range").attr('disabled',true);
+        }
+    }
+</script>

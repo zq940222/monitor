@@ -1,0 +1,184 @@
+<style>
+    .building{
+         border-radius: 5px;
+         border: solid 2px #b9def0;
+         width: 80px;
+         height: 50px;
+         text-align: center;
+         line-height: 50px;
+         margin: 5px;
+     }
+    .floor{
+        border-radius: 5px;
+        border: solid 2px #b9def0;
+        width: 80px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        margin: 5px;
+    }
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="col-xs-3 col-sm-3">
+                <label class="control-label">单位:</label>
+                <select name="company" id="company" class="form-control">
+                    {volist name="companyList" id="company"}
+                    <option value="{$company['id']}">{$company['name']}</option>
+                    {/volist}
+                </select>
+            </div>
+            <div class="col-xs-3 col-sm-3">
+                <label class="control-label">楼:</label>
+                <div id="building"></div>
+            </div>
+            <div class="col-xs-6 col-sm-6">
+                <label class="control-label">层:</label>
+                <div id="floor"></div>
+            </div>
+        </div>
+    </div>
+    <div id="pressure"></div>
+    <div id="flow"></div>
+</div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    //绑定层change事件
+    $("#floor").on('click','.floor', function () {
+        $(".floor").removeClass('btn-success');
+        $(".floor").addClass('btn-default');
+        $(this).removeClass('btn-default');
+        $(this).addClass('btn-success');
+        let floorId = $(this).data('value');
+        getData(floorId);
+    });
+    function getData(floorId) {
+        $.ajax({
+            url:"ajax/getDataByFloorId",
+            type:"GET",
+            data:{floor_id:floorId},
+            success:function (res) {
+                $("#pressure").empty();
+                $("#flow").empty();
+                let data = res.data;
+                let pressure = data['pressure'];
+                let flow = data['flow'];
+                console.log(pressure)
+                if (pressure.length > 0 ){
+                    for (let i = 0; i < pressure.length; i++) {
+                        $("#pressure").append("<div id='pressure-"+i+"' style='height: 500px'></div>");
+                        //压力
+                        var dom = document.getElementById("pressure-"+i);
+                        var myChart = echarts.init(dom);
+                        var option;
+                        option = {
+                            series: [{
+                                type: 'gauge',
+                                center: ["50%", "60%"],
+                                startAngle: 200,
+                                endAngle: -20,
+                                min: pressure[i].min,//最小值
+                                max: pressure[i].max,
+                                splitNumber: 10,
+                                itemStyle: {
+                                    color: '#FFAB91'
+                                },
+                                progress: {
+                                    show: true,
+                                    width: 30
+                                },
+
+                                pointer: {
+                                    show: false,
+                                },
+                                axisLine: {
+                                    lineStyle: {
+                                        width: 30
+                                    }
+                                },
+                                axisTick: {
+                                    distance: -45,
+                                    splitNumber: 5,
+                                    lineStyle: {
+                                        width: 2,
+                                        color: '#999'
+                                    }
+                                },
+                                splitLine: {
+                                    distance: -52,
+                                    length: 14,
+                                    lineStyle: {
+                                        width: 3,
+                                        color: '#999'
+                                    }
+                                },
+                                axisLabel: {
+                                    distance: -20,
+                                    color: '#999',
+                                    fontSize: 20
+                                },
+                                anchor: {
+                                    show: false
+                                },
+                                title:  {
+                                    offsetCenter: [0, 0]
+                                },
+                                detail: {
+                                    valueAnimation: true,
+                                    width: '60%',
+                                    lineHeight: 40,
+                                    height: '15%',
+                                    borderRadius: 8,
+                                    offsetCenter: [0, '-15%'],
+                                    fontSize: 40,
+                                    fontWeight: 'bolder',
+                                    formatter: '{value} MPa',
+                                    color: 'auto'
+                                },
+                                data: [{
+                                    value: pressure[i].data_value,
+                                    name:pressure[i].monitor_object
+                                }]
+                            }],
+                        };
+
+                        myChart.setOption(option, true);
+                    }
+                }
+                if (flow.length > 0 ){
+                    for (let i = 0; i < flow.length; i++) {
+                        $("#flow").append("<div id='flow-"+i+"' style='height: 500px'></div>");
+                        //流量
+                        var dom1 = document.getElementById("flow-"+i);
+                        var myChart1 = echarts.init(dom1);
+                        var option1;
+                        option1 = {
+                            xAxis: {
+                                type: 'category',
+                                boundaryGap: false,
+                                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                            },
+                            yAxis: {
+                                type: 'value'
+                            },
+                            series: [{
+                                data: [820, 932, 901, 934, 1290, 1330, 1320],
+                                type: 'line',
+                                areaStyle: {}
+                            }]
+                        };
+
+                        if (option1 && typeof option1 === 'object') {
+                            myChart1.setOption(option1);
+                        }
+                    }
+                }
+            }
+        });
+    }
+</script>
+
