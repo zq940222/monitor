@@ -16,7 +16,7 @@ class Index extends Backend
 {
 
     protected $noNeedLogin = ['login'];
-    protected $noNeedRight = ['index', 'logout'];
+    protected $noNeedRight = ['index', 'logout', 'checkError'];
     protected $layout = '';
 
     public function _initialize()
@@ -114,4 +114,62 @@ class Index extends Backend
         $this->success(__('Logout successful'), 'index/login');
     }
 
+    //检查报警
+    public function checkError()
+    {
+        $auth = $this->auth->getUserInfo();
+        $companyId = $auth['company_id'];
+        if (empty($companyId)) {
+            $this->error("没有对应单位");
+        }
+        //查询该公司所有压力设备
+        $equipments = model("Equipment")
+//            ->field("")
+            ->relation(["company", "building", "floor"])
+            ->where("company_id", $companyId)
+            ->where("instrument_type", 1)
+            ->where("status", 1)->select();
+        //检查所有设备5秒内数据有没有报警
+        $errorMsgList = [];
+        foreach ($equipments as $equipment) {
+            $errorMsgList[] = $this->getOnePressure($equipment['id'], $equipment['equipment_id'], $equipment['company']['IPC_id']);
+        }
+        $this->success("成功", "",$errorMsgList);
+    }
+
+    private function getOnePressure($id, $equipmentId, $IPC_id)
+    {
+        $equipment = model("equipment")
+            ->relation(["company", "building", "floor"])
+            ->find($id);
+        $data = model("data")
+            ->where("equipment_id", "=", $equipmentId)
+            ->where("IPC_id","=", $IPC_id)
+            ->where("create_time", ">", time()-5 )
+            ->order("create_time","desc")
+            ->find();
+        $errorMsg = "";
+        $buildingName = $equipment['building']['name'];
+        $floorName = $equipment['floor']['name'];
+        $monitorObject = $equipment['monitor_object'];
+        if (empty($equipment)) {
+            return "";
+        }
+        if (empty($data)) {
+            $errorMsg = "楼:".$buildingName.",层:".$floorName.",检测对象:".$monitorObject." 0";
+            return $errorMsg;
+        }
+        //检查数据是否在报警值外
+        if ($data['value'] > $equipment['HIAL']) {
+            //大于上限
+            $errorMsg = "楼:".$buildingName."层:".$floorName."检测对象:".$monitorObject." ".$data['value'];
+            return $errorMsg;
+        }
+        if ($data['value'] < $equipment['LoAL']) {
+            //小于下限
+            $errorMsg = "楼:".$buildingName."层:".$floorName."检测对象:".$monitorObject." ".$data['value'];
+            return $errorMsg;
+        }
+        return "";
+    }
 }

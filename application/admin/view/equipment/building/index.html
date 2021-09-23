@@ -1,6 +1,7 @@
 <div class="panel panel-default panel-intro">
-    
+
     <div class="panel-heading">
+        <h2> {$company.name} </h2>
         {:build_heading(null,FALSE)}
         <ul class="nav nav-tabs" data-field="status">
             <li class="{:$Think.get.status === null ? 'active' : ''}"><a href="#t-all" data-value="" data-toggle="tab">{:__('All')}</a></li>
@@ -26,6 +27,7 @@
                            data-operate-del="{:$auth->check('equipment/building/del')}" 
                            width="100%">
                     </table>
+                    <input type="hidden" name="company_id" value="{$company.id}">
                 </div>
             </div>
 

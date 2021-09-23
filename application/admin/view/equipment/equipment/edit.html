@@ -2,33 +2,21 @@
 
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Instrument_type')}:</label>
-        <!--<div class="col-xs-12 col-sm-8">-->
-            <!--<input id="c-instrument_type" data-rule="required" class="form-control" name="row[instrument_type]" type="number" value="{$row.instrument_type|htmlentities}">-->
-            <!---->
-        <!--</div>-->
         <div class="col-xs-12 col-sm-8">
-            <select name="row[instrument_type]" id="c-instrument_type" class="form-control">
-                <option value="1" {if $row.instrument_type==1}checked{/if}>{:__('Instrument_type 1')}</option>
-                <option value="2" {if $row.instrument_type==2}checked{/if}>{:__('Instrument_type 2')}</option>
+                        
+            <select  id="c-instrument_type" data-rule="required" class="form-control selectpicker" name="row[instrument_type]">
+                <option value="NULL" >无</option>
+                {foreach name="instrumentTypeList" item="vo"}
+                    <option value="{$key}" {in name="key" value="$row.instrument_type"}selected{/in}>{$vo}</option>
+                {/foreach}
             </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">{:__('Equipment_addr')}:</label>
-        <div class="col-xs-12 col-sm-8">
-            <input id="c-equipment_addr" class="form-control" name="row[equipment_addr]" type="number" value="{$row.equipment_addr|htmlentities}">
+
         </div>
     </div>
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Monitor_object')}:</label>
         <div class="col-xs-12 col-sm-8">
             <input id="c-monitor_object" data-rule="required" class="form-control" name="row[monitor_object]" type="text" value="{$row.monitor_object|htmlentities}">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">{:__('Gateway_addr')}:</label>
-        <div class="col-xs-12 col-sm-8">
-            <input id="c-gateway_addr" data-rule="required" class="form-control" name="row[gateway_addr]" type="text" value="{$row.gateway_addr|htmlentities}">
         </div>
     </div>
     <div class="form-group">
@@ -46,22 +34,25 @@
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Effective_range')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <select name="row[effective_range]" id="c-effective_range" class="form-control">
-                <option value="null" {if condition="$row.effective_range==null"}selected{/if}>无</option>
-                <option value="1" {if condition="$row.effective_range==1"}selected{/if}>0 - 25</option>
-                <option value="2" {if condition="$row.effective_range==2"}selected{/if}>0 - 1.6</option>
-                <option value="3" {if condition="$row.effective_range==3"}selected{/if}>-0.1 - 0</option>
+                        
+            <select  id="c-effective_range" class="form-control selectpicker" name="row[effective_range]">
+                {foreach name="effectiveRangeList" item="vo"}
+                    <option value="{$key}" {in name="key" value="$row.effective_range"}selected{/in}>{$vo}</option>
+                {/foreach}
             </select>
+
         </div>
     </div>
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Unit')}:</label>
         <div class="col-xs-12 col-sm-8">
-                <select name="row[unit]" id="c-unit" class="form-control">
-                    <option value="1" {if condition="$row.unit==1"}selected{/if}>MPa</option>
-                    <option value="2" {if condition="$row.unit==2"}selected{/if}>L</option>
-                    <option value="3" {if condition="$row.unit==3"}selected{/if}>m3</option>
-                </select>
+                        
+            <select  id="c-unit" class="form-control selectpicker" name="row[unit]">
+                {foreach name="unitList" item="vo"}
+                    <option value="{$key}" {in name="key" value="$row.unit"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
         </div>
     </div>
     <div class="form-group">
@@ -79,21 +70,13 @@
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
         <div class="col-xs-12 col-sm-8">
-
+            
             <div class="radio">
-                <label for="row[status]-1"><input id="row[status]-1" name="row[status]" type="radio" value="1" {in name="1" value="$row.status"}checked{/in} /> 启用</label>
-                <label for="row[status]-2"><input id="row[status]-2" name="row[status]" type="radio" value="-1" {in name="-1" value="$row.status"}checked{/in} /> 禁用</label>
+            {foreach name="statusList" item="vo"}
+            <label for="row[status]-{$key}"><input id="row[status]-{$key}" name="row[status]" type="radio" value="{$key}" {in name="key" value="$row.status"}checked{/in} /> {$vo}</label> 
+            {/foreach}
             </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">单位/楼/层:</label>
-        <div class="col-xs-12 col-sm-8">
-            <div class="form-inline" data-toggle="cxselect" data-selects="first,second,third">
-                <select class="first form-control" name="row[company_id]" data-url="ajax/company" data-value="{$row.company_id|htmlentities}" data-rule="required"></select>
-                <select class="second form-control" name="row[building_id]" data-url="ajax/building" data-query-name="company_id" data-value="{$row.building_id|htmlentities}" data-rule="required"></select>
-                <select class="third form-control" name="row[floor_id]" data-url="ajax/floor" data-query-name="building_id" data-value="{$row.floor_id|htmlentities}" data-rule="required"></select>
-            </div>
+
         </div>
     </div>
     <div class="form-group layer-footer">
@@ -104,19 +87,3 @@
         </div>
     </div>
 </form>
-<script>
-    var type = $("#c-instrument_type").val();
-    if (type == 1){
-        $("#c-effective_range").attr('disabled',false);
-    }else{
-        $("#c-effective_range").attr('disabled',true);
-    }
-    function changeType() {
-        var type = $("#c-instrument_type").val();
-        if (type == 1){
-            $("#c-effective_range").attr('disabled',false);
-        }else{
-            $("#c-effective_range").attr('disabled',true);
-        }
-    }
-</script>

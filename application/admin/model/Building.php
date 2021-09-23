@@ -86,4 +86,9 @@ class Building extends Model
     {
         return $this->belongsTo("Company", "company_id", "id");
     }
+
+    public function floor()
+    {
+        return $this->hasMany("Floor", "building_id", "id");
+    }
 }

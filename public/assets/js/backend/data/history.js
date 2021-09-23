@@ -6,6 +6,11 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Table.api.init({
                 extend: {
                     index_url: 'data/history/index' + location.search,
+                    add_url: 'data/history/add',
+                    edit_url: 'data/history/edit',
+                    del_url: 'data/history/del',
+                    multi_url: 'data/history/multi',
+                    import_url: 'data/history/import',
                     table: 'data',
                 }
             });
@@ -19,17 +24,15 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 sortName: 'id',
                 columns: [
                     [
-                        {checkbox: false},
-                        {field: 'id', title: __('Id')},
-                        {field: 'equipment_id', title: __('Equipment_id')},
-                        {field: 'company_id', title: __('Company_id')},
-                        {field: 'building_id', title: __('Building_id')},
-                        {field: 'floor_id', title: __('Floor_id')},
-                        {field: 'type', title: __('Type')},
-                        {field: 'value', title: __('Value'), operate:'BETWEEN'},
+                        {checkbox: true},
+                        {field: 'id', title: __('Id'), operate: false},
+                        {field: 'IPC_id', title: __('Ipc_id'), operate: false},
+                        {field: 'equipment_id', title: __('Equipment_id'), operate: false},
+                        {field: 'value', title: __('值'), operate: false},
                         {field: 'create_time', title: __('Create_time'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
                     ]
-                ]
+                ],
+                searchFormVisible: true
             });
 
             // 为表格绑定事件

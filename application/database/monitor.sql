@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 15/06/2021 18:28:44
+ Date: 17/08/2021 21:26:21
 */
 
 SET NAMES utf8mb4;
@@ -39,15 +39,12 @@ CREATE TABLE `m_admin`  (
   `company_id` int(11) NULL DEFAULT 0 COMMENT '单位id',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '管理员表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '管理员表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_admin
 -- ----------------------------
-INSERT INTO `m_admin` VALUES (1, 'monitor', 'Admin', '664618d991747219f74ac527f803c3ac', '5397e7', '/assets/img/avatar.png', 'admin@admin.com', 0, 1623377990, '127.0.0.1', 1491635035, 1623377990, '6de28f29-ef54-4795-9429-448c8fedfdeb', 'normal', 0);
-INSERT INTO `m_admin` VALUES (2, 'hzkq', '杭州口腔医院', 'b91c1e6e84acada7a698f1b47d6bfaef', 'YrX6HB', '/assets/img/avatar.png', '123@163.com', 0, NULL, NULL, 1623233108, 1623233108, '', 'normal', 0);
-INSERT INTO `m_admin` VALUES (3, 'hzkq1', 'h', 'c7c19765bc6c41f83d358b87f51e508a', 'OV5iNv', '/assets/img/avatar.png', '1233@163.com', 0, NULL, NULL, 1623233358, 1623233358, '', 'normal', 0);
-INSERT INTO `m_admin` VALUES (4, 'hzkq2', '1', '2fb123e0af1e4a18509bd60540d9283c', 'DksB7v', '/assets/img/avatar.png', '1223@163.com', 0, NULL, NULL, 1623233421, 1623233755, '', 'normal', 1);
+INSERT INTO `m_admin` VALUES (1, 'monitor', 'Admin', '664618d991747219f74ac527f803c3ac', '5397e7', '/assets/img/avatar.png', 'admin@admin.com', 0, 1629201500, '127.0.0.1', 1491635035, 1629201500, '66f3366a-f9e8-4a92-93e3-aac97f4be06d', 'normal', 0);
 
 -- ----------------------------
 -- Table structure for m_admin_log
@@ -65,94 +62,11 @@ CREATE TABLE `m_admin_log`  (
   `createtime` int(10) NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `name`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 84 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '管理员日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '管理员日志表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_admin_log
 -- ----------------------------
-INSERT INTO `m_admin_log` VALUES (1, 1, 'monitor', '/wLCealmYcP.php/index/login?url=%2FwLCealmYcP.php', '登录', '{\"url\":\"\\/wLCealmYcP.php\",\"__token__\":\"***\",\"username\":\"monitor\",\"password\":\"***\",\"captcha\":\"PEEW\",\"keeplogin\":\"1\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623203966);
-INSERT INTO `m_admin_log` VALUES (2, 1, 'monitor', '/wLCealmYcP.php/addon/install', '插件管理', '{\"name\":\"wechat\",\"force\":\"0\",\"uid\":\"3505\",\"token\":\"***\",\"version\":\"1.2.0\",\"faversion\":\"1.2.0.20210401_beta\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623204189);
-INSERT INTO `m_admin_log` VALUES (3, 1, 'monitor', '/wLCealmYcP.php/addon/install', '插件管理', '{\"name\":\"third\",\"force\":\"0\",\"uid\":\"3505\",\"token\":\"***\",\"version\":\"1.2.2\",\"faversion\":\"1.2.0.20210401_beta\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623204195);
-INSERT INTO `m_admin_log` VALUES (4, 1, 'monitor', '/wLCealmYcP.php/addon/install', '插件管理', '{\"name\":\"captchaconfig\",\"force\":\"0\",\"uid\":\"3505\",\"token\":\"***\",\"version\":\"1.0.2\",\"faversion\":\"1.2.0.20210401_beta\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623204282);
-INSERT INTO `m_admin_log` VALUES (5, 1, 'monitor', '/wLCealmYcP.php/addon/install', '插件管理', '{\"name\":\"loginbg\",\"force\":\"0\",\"uid\":\"3505\",\"token\":\"***\",\"version\":\"1.0.1\",\"faversion\":\"1.2.0.20210401_beta\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623204330);
-INSERT INTO `m_admin_log` VALUES (6, 1, 'monitor', '/wLCealmYcP.php/index/login', '登录', '{\"__token__\":\"***\",\"username\":\"monitor\",\"password\":\"***\",\"captcha\":\"xfbc\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623204600);
-INSERT INTO `m_admin_log` VALUES (7, 1, 'monitor', '/wLCealmYcP.php/addon/state', '插件管理 / 禁用启用', '{\"name\":\"captchaconfig\",\"action\":\"disable\",\"force\":\"0\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623204615);
-INSERT INTO `m_admin_log` VALUES (8, 1, 'monitor', '/wLCealmYcP.php/index/login', '登录', '{\"__token__\":\"***\",\"username\":\"monitor\",\"password\":\"***\",\"captcha\":\"akt3\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623204627);
-INSERT INTO `m_admin_log` VALUES (9, 1, 'monitor', '/wLCealmYcP.php/auth/rule/del', '权限管理 / 菜单规则 / 删除', '{\"action\":\"del\",\"ids\":\"3,66,67,73,79\",\"params\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623205011);
-INSERT INTO `m_admin_log` VALUES (10, 1, 'monitor', '/wLCealmYcP.php/general.config/edit', '常规管理 / 系统配置 / 编辑', '{\"__token__\":\"***\",\"row\":{\"categorytype\":\"{}\",\"configgroup\":\"{&quot;basic&quot;:&quot;Basic&quot;,&quot;email&quot;:&quot;Email&quot;}\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623205044);
-INSERT INTO `m_admin_log` VALUES (11, 1, 'monitor', '/wLCealmYcP.php/index/login', '登录', '{\"__token__\":\"***\",\"username\":\"monitor\",\"password\":\"***\",\"captcha\":\"wcyw\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623205565);
-INSERT INTO `m_admin_log` VALUES (12, 1, 'monitor', '/wLCealmYcP.php/addon/install', '插件管理', '{\"name\":\"crontab\",\"force\":\"0\",\"uid\":\"3505\",\"token\":\"***\",\"version\":\"1.0.6\",\"faversion\":\"1.2.0.20210401_beta\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623207770);
-INSERT INTO `m_admin_log` VALUES (13, 1, 'monitor', '/wLCealmYcP.php/addon/install', '插件管理', '{\"name\":\"faqueue\",\"force\":\"0\",\"uid\":\"3505\",\"token\":\"***\",\"version\":\"1.0.1\",\"faversion\":\"1.2.0.20210401_beta\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623207802);
-INSERT INTO `m_admin_log` VALUES (14, 1, 'monitor', '/wLCealmYcP.php/addon/install', '插件管理', '{\"name\":\"faqueue\",\"force\":\"0\",\"uid\":\"3505\",\"token\":\"***\",\"version\":\"1.0.1\",\"faversion\":\"1.2.0.20210401_beta\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623207831);
-INSERT INTO `m_admin_log` VALUES (15, 1, 'monitor', '/wLCealmYcP.php/general/config/check', '常规管理 / 系统配置', '{\"row\":{\"name\":\"AccessKey\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623208529);
-INSERT INTO `m_admin_log` VALUES (16, 1, 'monitor', '/wLCealmYcP.php/general.config/add', '常规管理 / 系统配置 / 添加', '{\"__token__\":\"***\",\"row\":{\"group\":\"basic\",\"type\":\"string\",\"name\":\"AccessKey\",\"title\":\"访问密钥\",\"setting\":{\"table\":\"\",\"conditions\":\"\",\"key\":\"\",\"value\":\"\"},\"value\":\"\",\"content\":\"value1|title1\\r\\nvalue2|title2\",\"tip\":\"\",\"rule\":\"\",\"extend\":\"\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623208555);
-INSERT INTO `m_admin_log` VALUES (17, 1, 'monitor', '/wLCealmYcP.php/general.config/edit', '常规管理 / 系统配置 / 编辑', '{\"__token__\":\"***\",\"row\":{\"categorytype\":\"{}\",\"configgroup\":\"{&quot;basic&quot;:&quot;Basic&quot;,&quot;email&quot;:&quot;Email&quot;,&quot;dictionary&quot;:&quot;Dictionary&quot;,&quot;accessKey&quot;:&quot;访问密钥&quot;,&quot;collect&quot;:&quot;采集配置&quot;,&quot;alarm&quot;:&quot;报警配置&quot;}\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623209126);
-INSERT INTO `m_admin_log` VALUES (18, 1, 'monitor', '/wLCealmYcP.php/general/config/del', '常规管理 / 系统配置 / 删除', '{\"name\":\"AccessKey\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623209139);
-INSERT INTO `m_admin_log` VALUES (19, 1, 'monitor', '/wLCealmYcP.php/general.config/edit', '常规管理 / 系统配置 / 编辑', '{\"__token__\":\"***\",\"row\":{\"configgroup\":\"{&quot;basic&quot;:&quot;Basic&quot;,&quot;email&quot;:&quot;Email&quot;,&quot;dictionary&quot;:&quot;Dictionary&quot;,&quot;accessKey&quot;:&quot;访问密钥&quot;,&quot;collect&quot;:&quot;采集配置&quot;}\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623209352);
-INSERT INTO `m_admin_log` VALUES (20, 1, 'monitor', '/wLCealmYcP.php/general/config/check', '常规管理 / 系统配置', '{\"row\":{\"name\":\"AccessKey\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623209376);
-INSERT INTO `m_admin_log` VALUES (21, 1, 'monitor', '/wLCealmYcP.php/general.config/add', '常规管理 / 系统配置 / 添加', '{\"__token__\":\"***\",\"row\":{\"group\":\"accessKey\",\"type\":\"string\",\"name\":\"AccessKey\",\"title\":\"访问密钥\",\"setting\":{\"table\":\"\",\"conditions\":\"\",\"key\":\"\",\"value\":\"\"},\"value\":\"\",\"content\":\"value1|title1\\r\\nvalue2|title2\",\"tip\":\"\",\"rule\":\"\",\"extend\":\"\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623209380);
-INSERT INTO `m_admin_log` VALUES (22, 1, 'monitor', '/wLCealmYcP.php/general/config/check', '常规管理 / 系统配置', '{\"row\":{\"name\":\"scan_interval\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623209487);
-INSERT INTO `m_admin_log` VALUES (23, 1, 'monitor', '/wLCealmYcP.php/general.config/add', '常规管理 / 系统配置 / 添加', '{\"__token__\":\"***\",\"row\":{\"group\":\"collect\",\"type\":\"number\",\"name\":\"scan_interval\",\"title\":\"采集间隔（秒）\",\"setting\":{\"table\":\"\",\"conditions\":\"\",\"key\":\"\",\"value\":\"\"},\"value\":\"5\",\"content\":\"value1|title1\\r\\nvalue2|title2\",\"tip\":\"\",\"rule\":\"\",\"extend\":\"\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623209495);
-INSERT INTO `m_admin_log` VALUES (24, 1, 'monitor', '/wLCealmYcP.php/auth/rule/edit/ids/125?dialog=1', '权限管理 / 菜单规则 / 编辑', '{\"dialog\":\"1\",\"__token__\":\"***\",\"row\":{\"ismenu\":\"1\",\"pid\":\"0\",\"name\":\"equipment\",\"title\":\"设备\",\"url\":\"\",\"icon\":\"fa fa-sheqel\",\"weigh\":\"0\",\"condition\":\"\",\"menutype\":\"addtabs\",\"extend\":\"\",\"remark\":\"\",\"status\":\"normal\"},\"ids\":\"125\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623223046);
-INSERT INTO `m_admin_log` VALUES (25, 1, 'monitor', '/wLCealmYcP.php/auth/rule/edit/ids/126?dialog=1', '权限管理 / 菜单规则 / 编辑', '{\"dialog\":\"1\",\"__token__\":\"***\",\"row\":{\"ismenu\":\"1\",\"pid\":\"125\",\"name\":\"equipment\\/equuipment\",\"title\":\"设备管理\",\"url\":\"\",\"icon\":\"fa fa-codepen\",\"weigh\":\"0\",\"condition\":\"\",\"menutype\":\"addtabs\",\"extend\":\"\",\"remark\":\"\",\"status\":\"normal\"},\"ids\":\"126\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623223075);
-INSERT INTO `m_admin_log` VALUES (26, 1, 'monitor', '/wLCealmYcP.php/auth/rule/edit/ids/133?dialog=1', '权限管理 / 菜单规则 / 编辑', '{\"dialog\":\"1\",\"__token__\":\"***\",\"row\":{\"ismenu\":\"1\",\"pid\":\"125\",\"name\":\"equipment\\/company\",\"title\":\"单位管理\",\"url\":\"\",\"icon\":\"fa fa-briefcase\",\"weigh\":\"0\",\"condition\":\"\",\"menutype\":\"addtabs\",\"extend\":\"\",\"remark\":\"\",\"status\":\"normal\"},\"ids\":\"133\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623223110);
-INSERT INTO `m_admin_log` VALUES (27, 1, 'monitor', '/wLCealmYcP.php/auth/rule/edit/ids/147?dialog=1', '权限管理 / 菜单规则 / 编辑', '{\"dialog\":\"1\",\"__token__\":\"***\",\"row\":{\"ismenu\":\"1\",\"pid\":\"125\",\"name\":\"equipment\\/floor\",\"title\":\"层管理\",\"url\":\"\",\"icon\":\"fa fa-building-o\",\"weigh\":\"0\",\"condition\":\"\",\"menutype\":\"addtabs\",\"extend\":\"\",\"remark\":\"\",\"status\":\"normal\"},\"ids\":\"147\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623223130);
-INSERT INTO `m_admin_log` VALUES (28, 1, 'monitor', '/wLCealmYcP.php/index/login', '登录', '{\"__token__\":\"***\",\"username\":\"monitor\",\"password\":\"***\",\"captcha\":\"qsaa\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623226079);
-INSERT INTO `m_admin_log` VALUES (29, 1, 'monitor', '/wLCealmYcP.php/equipment/company/add?dialog=1', '设备 / 单位管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"name\":\"浙江省人民医院\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623226351);
-INSERT INTO `m_admin_log` VALUES (30, 1, 'monitor', '/wLCealmYcP.php/equipment/company/add?dialog=1', '设备 / 单位管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"name\":\"杭州市第一医院\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623226364);
-INSERT INTO `m_admin_log` VALUES (31, 1, 'monitor', '/wLCealmYcP.php/equipment/company/add?dialog=1', '设备 / 单位管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"name\":\"杭州口腔医院\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623226467);
-INSERT INTO `m_admin_log` VALUES (32, 1, 'monitor', '/wLCealmYcP.php/equipment/company/add?dialog=1', '设备 / 单位管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"name\":\"杭州市中医院\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623226503);
-INSERT INTO `m_admin_log` VALUES (33, 1, 'monitor', '/wLCealmYcP.php/equipment/company/add?dialog=1', '设备 / 单位管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"name\":\"浙江省中医院\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623226618);
-INSERT INTO `m_admin_log` VALUES (34, 1, 'monitor', '/wLCealmYcP.php/equipment/building/add?dialog=1', '设备 / 楼管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"3\",\"name\":\"1号楼\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623226845);
-INSERT INTO `m_admin_log` VALUES (35, 1, 'monitor', '/wLCealmYcP.php/equipment/building/add?dialog=1', '设备 / 楼管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"3\",\"name\":\"2号楼\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623226858);
-INSERT INTO `m_admin_log` VALUES (36, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/add?dialog=1', '设备 / 层管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"building_id\":\"1\",\"name\":\"1层\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623227123);
-INSERT INTO `m_admin_log` VALUES (37, 1, 'monitor', '/wLCealmYcP.php/auth/group/del', '权限管理 / 角色组 / 删除', '{\"action\":\"del\",\"ids\":\"4\",\"params\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623227731);
-INSERT INTO `m_admin_log` VALUES (38, 1, 'monitor', '/wLCealmYcP.php/auth/group/del', '权限管理 / 角色组 / 删除', '{\"action\":\"del\",\"ids\":\"5\",\"params\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623227733);
-INSERT INTO `m_admin_log` VALUES (39, 1, 'monitor', '/wLCealmYcP.php/auth/group/del', '权限管理 / 角色组 / 删除', '{\"action\":\"del\",\"ids\":\"3\",\"params\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623227736);
-INSERT INTO `m_admin_log` VALUES (40, 1, 'monitor', '/wLCealmYcP.php/auth/group/roletree', '权限管理 / 角色组', '{\"id\":\"2\",\"pid\":\"1\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623227739);
-INSERT INTO `m_admin_log` VALUES (41, 1, 'monitor', '/wLCealmYcP.php/auth/group/edit/ids/2?dialog=1', '权限管理 / 角色组 / 编辑', '{\"dialog\":\"1\",\"__token__\":\"***\",\"row\":{\"rules\":\"1,13,14,15,16,17\",\"pid\":\"1\",\"name\":\"子账号组\",\"status\":\"normal\"},\"ids\":\"2\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623227765);
-INSERT INTO `m_admin_log` VALUES (42, 1, 'monitor', '/wLCealmYcP.php/addon/install', '插件管理', '{\"name\":\"example\",\"force\":\"0\",\"uid\":\"3505\",\"token\":\"***\",\"version\":\"1.1.0\",\"faversion\":\"1.2.0.20210401_beta\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623228041);
-INSERT INTO `m_admin_log` VALUES (43, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/add?dialog=1', '设备 / 层管理 / 添加', '{\"dialog\":\"1\",\"company_id\":\"3\",\"floor_id\":\"1\",\"row\":{\"name\":\"1层\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623229616);
-INSERT INTO `m_admin_log` VALUES (44, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/add?dialog=1', '设备 / 层管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"3\",\"floor_id\":\"1\",\"name\":\"2层\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623229708);
-INSERT INTO `m_admin_log` VALUES (45, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/del', '设备 / 层管理 / 删除', '{\"action\":\"del\",\"ids\":\"3\",\"params\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623229745);
-INSERT INTO `m_admin_log` VALUES (46, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/del', '设备 / 层管理 / 删除', '{\"action\":\"del\",\"ids\":\"2\",\"params\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623229746);
-INSERT INTO `m_admin_log` VALUES (47, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/del', '设备 / 层管理 / 删除', '{\"action\":\"del\",\"ids\":\"1\",\"params\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623229748);
-INSERT INTO `m_admin_log` VALUES (48, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/add?dialog=1', '设备 / 层管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"3\",\"building_id\":\"1\",\"name\":\"1层\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623229756);
-INSERT INTO `m_admin_log` VALUES (49, 1, 'monitor', '/wLCealmYcP.php/equipment/equipment/add?dialog=1', '设备 / 设备管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"instrument_type\":\"1\",\"equipment_addr\":\"1\",\"monitor_object\":\"压力\",\"gateway_addr\":\"9300\",\"HIAL\":\"20\",\"LoAL\":\"1\",\"effective_range\":\"1-20\",\"unit\":\"1\",\"decimal_offset\":\"2\",\"alias\":\"\",\"status\":\"1\",\"company_id\":\"3\",\"building_id\":\"1\",\"floor_id\":\"4\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623231278);
-INSERT INTO `m_admin_log` VALUES (50, 1, 'monitor', '/wLCealmYcP.php/equipment/equipment/edit/ids/1?dialog=1', '设备 / 设备管理 / 编辑', '{\"dialog\":\"1\",\"row\":{\"instrument_type\":\"1\",\"equipment_addr\":\"1\",\"monitor_object\":\"压力\",\"gateway_addr\":\"9300\",\"HIAL\":\"20\",\"LoAL\":\"1\",\"effective_range\":\"1-20\",\"unit\":\"1\",\"decimal_offset\":\"2\",\"alias\":\"\",\"status\":\"-1\",\"company_id\":\"3\",\"building_id\":\"1\",\"floor_id\":\"4\"},\"ids\":\"1\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623232206);
-INSERT INTO `m_admin_log` VALUES (51, 1, 'monitor', '/wLCealmYcP.php/equipment/equipment/edit/ids/1?dialog=1', '设备 / 设备管理 / 编辑', '{\"dialog\":\"1\",\"row\":{\"instrument_type\":\"1\",\"equipment_addr\":\"1\",\"monitor_object\":\"压力\",\"gateway_addr\":\"9300\",\"HIAL\":\"20\",\"LoAL\":\"1\",\"effective_range\":\"1-20\",\"unit\":\"1\",\"decimal_offset\":\"2\",\"alias\":\"\",\"status\":\"1\",\"company_id\":\"3\",\"building_id\":\"1\",\"floor_id\":\"4\"},\"ids\":\"1\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623232225);
-INSERT INTO `m_admin_log` VALUES (52, 1, 'monitor', '/wLCealmYcP.php/auth/rule/multi', '权限管理 / 菜单规则', '{\"action\":\"\",\"ids\":\"154\",\"params\":\"ismenu=0\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623232412);
-INSERT INTO `m_admin_log` VALUES (53, 1, 'monitor', '/wLCealmYcP.php/auth/rule/multi', '权限管理 / 菜单规则', '{\"action\":\"\",\"ids\":\"4\",\"params\":\"ismenu=0\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623232443);
-INSERT INTO `m_admin_log` VALUES (54, 1, 'monitor', '/wLCealmYcP.php/auth/rule/multi', '权限管理 / 菜单规则', '{\"action\":\"\",\"ids\":\"154\",\"params\":\"ismenu=1\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623232562);
-INSERT INTO `m_admin_log` VALUES (55, 1, 'monitor', '/wLCealmYcP.php/auth/admin/add?dialog=1', '权限管理 / 管理员管理 / 添加', '{\"dialog\":\"1\",\"__token__\":\"***\",\"group\":[\"2\"],\"row\":{\"username\":\"hzkq\",\"email\":\"123@163.com\",\"nickname\":\"杭州口腔医院\",\"password\":\"***\",\"status\":\"normal\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623233108);
-INSERT INTO `m_admin_log` VALUES (56, 1, 'monitor', '/wLCealmYcP.php/auth/admin/add?dialog=1', '权限管理 / 管理员管理 / 添加', '{\"dialog\":\"1\",\"__token__\":\"***\",\"group\":[\"2\"],\"row\":{\"username\":\"hzkq\",\"email\":\"123@163.com\",\"nickname\":\"h\",\"password\":\"***\",\"company_id\":\"\",\"status\":\"normal\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623233347);
-INSERT INTO `m_admin_log` VALUES (57, 1, 'monitor', '/wLCealmYcP.php/auth/admin/add?dialog=1', '权限管理 / 管理员管理 / 添加', '{\"dialog\":\"1\",\"__token__\":\"***\",\"group\":[\"2\"],\"row\":{\"username\":\"hzkq1\",\"email\":\"123@163.com\",\"nickname\":\"h\",\"password\":\"***\",\"company_id\":\"\",\"status\":\"normal\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623233353);
-INSERT INTO `m_admin_log` VALUES (58, 1, 'monitor', '/wLCealmYcP.php/auth/admin/add?dialog=1', '权限管理 / 管理员管理 / 添加', '{\"dialog\":\"1\",\"__token__\":\"***\",\"group\":[\"2\"],\"row\":{\"username\":\"hzkq1\",\"email\":\"1233@163.com\",\"nickname\":\"h\",\"password\":\"***\",\"company_id\":\"\",\"status\":\"normal\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623233358);
-INSERT INTO `m_admin_log` VALUES (59, 1, 'monitor', '/wLCealmYcP.php/auth/admin/add?dialog=1', '权限管理 / 管理员管理 / 添加', '{\"dialog\":\"1\",\"__token__\":\"***\",\"group\":[\"2\"],\"row\":{\"username\":\"hzkq2\",\"email\":\"1223@163.com\",\"nickname\":\"1\",\"password\":\"***\",\"company_id\":\"\",\"status\":\"normal\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623233421);
-INSERT INTO `m_admin_log` VALUES (60, 1, 'monitor', '/wLCealmYcP.php/auth/admin/edit/ids/4?dialog=1', '权限管理 / 管理员管理 / 编辑', '{\"dialog\":\"1\",\"__token__\":\"***\",\"group\":[\"2\"],\"row\":{\"username\":\"hzkq2\",\"email\":\"1223@163.com\",\"nickname\":\"1\",\"password\":\"***\",\"loginfailure\":\"0\",\"company_id\":\"1\",\"status\":\"normal\"},\"ids\":\"4\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623233755);
-INSERT INTO `m_admin_log` VALUES (61, 0, 'Unknown', '/wLCealmYcP.php/index/login', '', '{\"__token__\":\"***\",\"username\":\"monitor\",\"password\":\"***\",\"captcha\":\"rykj\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623377984);
-INSERT INTO `m_admin_log` VALUES (62, 1, 'monitor', '/wLCealmYcP.php/index/login', '登录', '{\"__token__\":\"***\",\"username\":\"monitor\",\"password\":\"***\",\"captcha\":\"hmix\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623377990);
-INSERT INTO `m_admin_log` VALUES (63, 1, 'monitor', '/wLCealmYcP.php/auth/rule/add?dialog=1', '权限管理 / 菜单规则 / 添加', '{\"dialog\":\"1\",\"__token__\":\"***\",\"row\":{\"ismenu\":\"1\",\"pid\":\"0\",\"name\":\"data\",\"title\":\"数据\",\"url\":\"\",\"icon\":\"fa fa-bar-chart\",\"weigh\":\"0\",\"condition\":\"\",\"menutype\":\"addtabs\",\"extend\":\"\",\"remark\":\"数据\",\"status\":\"normal\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623378216);
-INSERT INTO `m_admin_log` VALUES (64, 1, 'monitor', '/wLCealmYcP.php/auth/rule/add?dialog=1', '权限管理 / 菜单规则 / 添加', '{\"dialog\":\"1\",\"__token__\":\"***\",\"row\":{\"ismenu\":\"1\",\"pid\":\"200\",\"name\":\"data\\/realtime\",\"title\":\"实时数据\",\"url\":\"\",\"icon\":\"fa fa-list-alt\",\"weigh\":\"0\",\"condition\":\"\",\"menutype\":\"addtabs\",\"extend\":\"\",\"remark\":\"实时数据\",\"status\":\"normal\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623378390);
-INSERT INTO `m_admin_log` VALUES (65, 1, 'monitor', '/wLCealmYcP.php/auth/rule/add?dialog=1', '权限管理 / 菜单规则 / 添加', '{\"dialog\":\"1\",\"__token__\":\"***\",\"row\":{\"ismenu\":\"1\",\"pid\":\"201\",\"name\":\"data\\/realtime\\/index\",\"title\":\"查看\",\"url\":\"\",\"icon\":\"fa fa-circle-o\",\"weigh\":\"0\",\"condition\":\"\",\"menutype\":\"addtabs\",\"extend\":\"\",\"remark\":\"\",\"status\":\"normal\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623378441);
-INSERT INTO `m_admin_log` VALUES (66, 1, 'monitor', '/wLCealmYcP.php/auth/rule/edit/ids/202?dialog=1', '权限管理 / 菜单规则 / 编辑', '{\"dialog\":\"1\",\"__token__\":\"***\",\"row\":{\"ismenu\":\"0\",\"pid\":\"201\",\"name\":\"data\\/realtime\\/index\",\"title\":\"查看\",\"url\":\"\",\"icon\":\"fa fa-circle-o\",\"weigh\":\"0\",\"condition\":\"\",\"menutype\":\"addtabs\",\"extend\":\"\",\"remark\":\"\",\"status\":\"normal\"},\"ids\":\"202\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623378457);
-INSERT INTO `m_admin_log` VALUES (67, 1, 'monitor', '/wLCealmYcP.php/auth/rule/edit/ids/203?dialog=1', '权限管理 / 菜单规则 / 编辑', '{\"dialog\":\"1\",\"__token__\":\"***\",\"row\":{\"ismenu\":\"1\",\"pid\":\"200\",\"name\":\"data\\/history\",\"title\":\"历史数据\",\"url\":\"\",\"icon\":\"fa fa-database\",\"weigh\":\"0\",\"condition\":\"\",\"menutype\":\"addtabs\",\"extend\":\"\",\"remark\":\"历史数据\",\"status\":\"normal\"},\"ids\":\"203\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623378812);
-INSERT INTO `m_admin_log` VALUES (68, 1, 'monitor', '/wLCealmYcP.php/equipment/equipment/edit/ids/1?dialog=1', '设备 / 设备管理 / 编辑', '{\"dialog\":\"1\",\"row\":{\"instrument_type\":\"1\",\"equipment_addr\":\"1\",\"monitor_object\":\"压力\",\"gateway_addr\":\"9300\",\"HIAL\":\"20\",\"LoAL\":\"1\",\"effective_range\":\"1\",\"unit\":\"1\",\"decimal_offset\":\"2\",\"alias\":\"\",\"status\":\"1\",\"company_id\":\"3\",\"building_id\":\"1\",\"floor_id\":\"4\"},\"ids\":\"1\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623382238);
-INSERT INTO `m_admin_log` VALUES (69, 1, 'monitor', '/wLCealmYcP.php/equipment/building/add?dialog=1', '设备 / 楼管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"2\",\"name\":\"一号楼\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623397101);
-INSERT INTO `m_admin_log` VALUES (70, 1, 'monitor', '/wLCealmYcP.php/equipment/building/add?dialog=1', '设备 / 楼管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"2\",\"name\":\"2号楼\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623397109);
-INSERT INTO `m_admin_log` VALUES (71, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/add?dialog=1', '设备 / 层管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"2\",\"building_id\":\"3\",\"name\":\"1层\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623397121);
-INSERT INTO `m_admin_log` VALUES (72, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/add?dialog=1', '设备 / 层管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"2\",\"building_id\":\"3\",\"name\":\"2层\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623397132);
-INSERT INTO `m_admin_log` VALUES (73, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/add?dialog=1', '设备 / 层管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"2\",\"building_id\":\"4\",\"name\":\"1层\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623397142);
-INSERT INTO `m_admin_log` VALUES (74, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/add?dialog=1', '设备 / 层管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"2\",\"building_id\":\"4\",\"name\":\"2层\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623397150);
-INSERT INTO `m_admin_log` VALUES (75, 1, 'monitor', '/wLCealmYcP.php/equipment/building/add?dialog=1', '设备 / 楼管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"1\",\"name\":\"一号楼\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623397339);
-INSERT INTO `m_admin_log` VALUES (76, 1, 'monitor', '/wLCealmYcP.php/equipment/building/add?dialog=1', '设备 / 楼管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"1\",\"name\":\"二号楼\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623397348);
-INSERT INTO `m_admin_log` VALUES (77, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/add?dialog=1', '设备 / 层管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"1\",\"building_id\":\"5\",\"name\":\"1层\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623397358);
-INSERT INTO `m_admin_log` VALUES (78, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/add?dialog=1', '设备 / 层管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"1\",\"building_id\":\"5\",\"name\":\"2层\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623397365);
-INSERT INTO `m_admin_log` VALUES (79, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/add?dialog=1', '设备 / 层管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"1\",\"building_id\":\"6\",\"name\":\"1层\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623397372);
-INSERT INTO `m_admin_log` VALUES (80, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/add?dialog=1', '设备 / 层管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"1\",\"building_id\":\"6\",\"name\":\"2层\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623397378);
-INSERT INTO `m_admin_log` VALUES (81, 1, 'monitor', '/wLCealmYcP.php/equipment/floor/add?dialog=1', '设备 / 层管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"company_id\":\"1\",\"building_id\":\"5\",\"name\":\"3层\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623735971);
-INSERT INTO `m_admin_log` VALUES (82, 1, 'monitor', '/wLCealmYcP.php/equipment/equipment/add?dialog=1', '设备 / 设备管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"instrument_type\":\"2\",\"equipment_addr\":\"222\",\"monitor_object\":\"气体流量\",\"gateway_addr\":\"9301\",\"HIAL\":\"200\",\"LoAL\":\"1\",\"unit\":\"2\",\"decimal_offset\":\"2\",\"alias\":\"\",\"status\":\"1\",\"company_id\":\"1\",\"building_id\":\"5\",\"floor_id\":\"9\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623739081);
-INSERT INTO `m_admin_log` VALUES (83, 1, 'monitor', '/wLCealmYcP.php/equipment/equipment/add?dialog=1', '设备 / 设备管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"instrument_type\":\"1\",\"equipment_addr\":\"1\",\"monitor_object\":\"负压\",\"gateway_addr\":\"9302\",\"HIAL\":\"0\",\"LoAL\":\"-0.09\",\"effective_range\":\"3\",\"unit\":\"1\",\"decimal_offset\":\"1\",\"alias\":\"\",\"status\":\"1\",\"company_id\":\"1\",\"building_id\":\"5\",\"floor_id\":\"9\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4381.7 Safari/537.36', 1623739336);
 
 -- ----------------------------
 -- Table structure for m_area
@@ -173,7 +87,7 @@ CREATE TABLE `m_area`  (
   `lat` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '纬度',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `pid`(`pid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3749 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '地区表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3749 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '地区表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_area
@@ -3950,12 +3864,13 @@ CREATE TABLE `m_attachment`  (
   `storage` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'local' COMMENT '存储位置',
   `sha1` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '文件 sha1编码',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '附件表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '附件表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_attachment
 -- ----------------------------
 INSERT INTO `m_attachment` VALUES (1, 1, 0, '/assets/img/qrcode.png', '150', '150', 'png', 0, 'qrcode.png', 21859, 'image/png', '', 1491635035, 1491635035, 1491635035, 'local', '17163603d0263e4838b9387ff2cd4877e8b018f6');
+INSERT INTO `m_attachment` VALUES (2, 1, 0, '/uploads/20210817/7ca0cb484606f256ad97e1dbaf8a1d36.jpg', '5184', '3456', 'jpg', 0, '微信图片_20210817193938.jpg', 4533435, 'image/jpeg', '', 1629200459, 1629200459, 1629200459, 'local', '70659c63745d996757cd621d328720ff871077eb');
 
 -- ----------------------------
 -- Table structure for m_auth_group
@@ -3970,13 +3885,13 @@ CREATE TABLE `m_auth_group`  (
   `updatetime` int(10) NULL DEFAULT NULL COMMENT '更新时间',
   `status` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '分组表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '分组表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_auth_group
 -- ----------------------------
 INSERT INTO `m_auth_group` VALUES (1, 0, 'Admin group', '*', 1491635035, 1491635035, 'normal');
-INSERT INTO `m_auth_group` VALUES (2, 1, '子账号组', '1,13,14,15,16,17', 1491635035, 1623227765, 'normal');
+INSERT INTO `m_auth_group` VALUES (2, 1, '子账号组', '1,13,14,15,16,17,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214', 1491635035, 1627199621, 'normal');
 
 -- ----------------------------
 -- Table structure for m_auth_group_access
@@ -3988,7 +3903,7 @@ CREATE TABLE `m_auth_group_access`  (
   UNIQUE INDEX `uid_group_id`(`uid`, `group_id`) USING BTREE,
   INDEX `uid`(`uid`) USING BTREE,
   INDEX `group_id`(`group_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '权限分组表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '权限分组表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_auth_group_access
@@ -4023,14 +3938,14 @@ CREATE TABLE `m_auth_rule`  (
   UNIQUE INDEX `name`(`name`) USING BTREE,
   INDEX `pid`(`pid`) USING BTREE,
   INDEX `weigh`(`weigh`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 215 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '节点表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 215 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '节点表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_auth_rule
 -- ----------------------------
 INSERT INTO `m_auth_rule` VALUES (1, 'file', 0, 'dashboard', 'Dashboard', 'fa fa-dashboard', '', '', 'Dashboard tips', 1, NULL, '', 1491635035, 1491635035, 143, 'normal');
 INSERT INTO `m_auth_rule` VALUES (2, 'file', 0, 'general', 'General', 'fa fa-cogs', '', '', '', 1, NULL, '', 1491635035, 1491635035, 137, 'normal');
-INSERT INTO `m_auth_rule` VALUES (4, 'file', 0, 'addon', 'Addon', 'fa fa-rocket', '', '', 'Addon tips', 0, NULL, '', 1491635035, 1623232443, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (4, 'file', 0, 'addon', 'Addon', 'fa fa-rocket', '', '', 'Addon tips', 0, NULL, '', 1491635035, 1629200482, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (5, 'file', 0, 'auth', 'Auth', 'fa fa-group', '', '', '', 1, NULL, '', 1491635035, 1491635035, 99, 'normal');
 INSERT INTO `m_auth_rule` VALUES (6, 'file', 2, 'general/config', 'Config', 'fa fa-cog', '', '', 'Config tips', 1, NULL, '', 1491635035, 1491635035, 60, 'normal');
 INSERT INTO `m_auth_rule` VALUES (7, 'file', 2, 'general/attachment', 'Attachment', 'fa fa-file-image-o', '', '', 'Attachment tips', 1, NULL, '', 1491635035, 1491635035, 53, 'normal');
@@ -4122,17 +4037,17 @@ INSERT INTO `m_auth_rule` VALUES (118, 'file', 116, 'general/crontab/add', '添�
 INSERT INTO `m_auth_rule` VALUES (119, 'file', 116, 'general/crontab/edit', '编辑 ', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623207770, 1623207770, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (120, 'file', 116, 'general/crontab/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623207770, 1623207770, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (121, 'file', 116, 'general/crontab/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623207770, 1623207770, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (122, 'file', 0, 'faqueue', '消息队列', 'fa fa-list', '', '', '消息队列', 1, NULL, '', 1623207831, 1623207831, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (122, 'file', 0, 'faqueue', '消息队列', 'fa fa-list', '', '', '消息队列', 0, NULL, '', 1623207831, 1628418642, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (123, 'file', 122, 'faqueue/log', '任务完成记录', 'fa fa-list', '', '', '', 1, NULL, '', 1623207831, 1623207831, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (124, 'file', 123, 'faqueue/log/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623207831, 1623207831, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (125, 'file', 0, 'equipment', '设备', 'fa fa-sheqel', '', '', '', 1, 'addtabs', '', 1623222555, 1623223046, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (126, 'file', 125, 'equipment/equipment', '设备管理', 'fa fa-codepen', '', '', '', 1, 'addtabs', '', 1623222555, 1623223075, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (127, 'file', 126, 'equipment/equipment/import', 'Import', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222555, 1623222555, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (128, 'file', 126, 'equipment/equipment/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222555, 1623222555, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (129, 'file', 126, 'equipment/equipment/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222555, 1623222555, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (130, 'file', 126, 'equipment/equipment/edit', '编辑', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222555, 1623222555, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (131, 'file', 126, 'equipment/equipment/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222555, 1623222555, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (132, 'file', 126, 'equipment/equipment/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222555, 1623222555, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (126, 'file', 125, 'equipment/equipment', '设备管理', 'fa fa-codepen', '', '', '', 0, 'addtabs', '', 1623222555, 1628086244, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (127, 'file', 126, 'equipment/equipment/import', 'Import', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222555, 1627561354, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (128, 'file', 126, 'equipment/equipment/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222555, 1627561354, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (129, 'file', 126, 'equipment/equipment/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222555, 1627561354, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (130, 'file', 126, 'equipment/equipment/edit', '编辑', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222555, 1627561354, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (131, 'file', 126, 'equipment/equipment/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222555, 1627561354, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (132, 'file', 126, 'equipment/equipment/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222555, 1627561354, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (133, 'file', 125, 'equipment/company', '单位管理', 'fa fa-briefcase', '', '', '', 1, 'addtabs', '', 1623222954, 1623223110, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (134, 'file', 133, 'equipment/company/import', 'Import', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222954, 1623224088, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (135, 'file', 133, 'equipment/company/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222954, 1623224088, 0, 'normal');
@@ -4140,21 +4055,21 @@ INSERT INTO `m_auth_rule` VALUES (136, 'file', 133, 'equipment/company/add', '�
 INSERT INTO `m_auth_rule` VALUES (137, 'file', 133, 'equipment/company/edit', '编辑', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222954, 1623224088, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (138, 'file', 133, 'equipment/company/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222954, 1623224088, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (139, 'file', 133, 'equipment/company/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222954, 1623224088, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (140, 'file', 125, 'equipment/building', '楼管理', 'fa fa-building', '', '', '', 1, NULL, '', 1623222974, 1623222974, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (140, 'file', 125, 'equipment/building', '楼管理', 'fa fa-building', '', '', '', 0, NULL, '', 1623222974, 1628086247, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (141, 'file', 140, 'equipment/building/import', 'Import', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222974, 1623224299, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (142, 'file', 140, 'equipment/building/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222974, 1623224299, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (143, 'file', 140, 'equipment/building/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222974, 1623224299, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (144, 'file', 140, 'equipment/building/edit', '编辑', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222974, 1623224299, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (145, 'file', 140, 'equipment/building/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222974, 1623224299, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (146, 'file', 140, 'equipment/building/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222974, 1623224299, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (147, 'file', 125, 'equipment/floor', '层管理', 'fa fa-building-o', '', '', '', 1, 'addtabs', '', 1623222995, 1623223130, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (147, 'file', 125, 'equipment/floor', '层管理', 'fa fa-building-o', '', '', '', 0, 'addtabs', '', 1623222995, 1628086248, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (148, 'file', 147, 'equipment/floor/import', 'Import', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222995, 1623224288, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (149, 'file', 147, 'equipment/floor/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222995, 1623224288, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (150, 'file', 147, 'equipment/floor/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222995, 1623224288, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (151, 'file', 147, 'equipment/floor/edit', '编辑', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222995, 1623224288, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (152, 'file', 147, 'equipment/floor/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222995, 1623224288, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (153, 'file', 147, 'equipment/floor/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623222995, 1623224288, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (154, 'file', 0, 'example', '开发示例管理', 'fa fa-magic', '', '', '', 1, NULL, '', 1623228041, 1623232562, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (154, 'file', 0, 'example', '开发示例管理', 'fa fa-magic', '', '', '', 0, NULL, '', 1623228041, 1628402464, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (155, 'file', 154, 'example/bootstraptable', '表格完整示例', 'fa fa-table', '', '', '', 1, NULL, '', 1623228041, 1623228041, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (156, 'file', 155, 'example/bootstraptable/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623228041, 1623228041, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (157, 'file', 155, 'example/bootstraptable/detail', '详情', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623228041, 1623228041, 0, 'normal');
@@ -4203,13 +4118,13 @@ INSERT INTO `m_auth_rule` VALUES (199, 'file', 198, 'example/echarts/index', '�
 INSERT INTO `m_auth_rule` VALUES (200, 'file', 0, 'data', '数据', 'fa fa-bar-chart', '', '', '数据', 1, 'addtabs', '', 1623378216, 1623378216, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (201, 'file', 200, 'data/realtime', '实时数据', 'fa fa-list-alt', '', '', '实时数据', 1, 'addtabs', '', 1623378390, 1623378390, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (202, 'file', 201, 'data/realtime/index', '查看', 'fa fa-circle-o', '', '', '', 0, 'addtabs', '', 1623378441, 1623395241, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (203, 'file', 200, 'data/history', '历史数据', 'fa fa-database', '', '', '历史数据', 1, 'addtabs', '', 1623378765, 1623378812, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (204, 'file', 203, 'data/history/import', 'Import', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623378765, 1623378765, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (205, 'file', 203, 'data/history/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623378765, 1623378765, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (206, 'file', 203, 'data/history/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623378765, 1623378765, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (207, 'file', 203, 'data/history/edit', '编辑', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623378765, 1623378765, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (208, 'file', 203, 'data/history/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623378765, 1623378765, 0, 'normal');
-INSERT INTO `m_auth_rule` VALUES (209, 'file', 203, 'data/history/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623378765, 1623378765, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (203, 'file', 200, 'data/history', '历史数据', 'fa fa-database', '', '', '历史数据', 1, 'addtabs', '', 1623378765, 1628089711, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (204, 'file', 203, 'data/history/import', 'Import', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623378765, 1628090697, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (205, 'file', 203, 'data/history/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623378765, 1628090697, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (206, 'file', 203, 'data/history/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623378765, 1628090697, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (207, 'file', 203, 'data/history/edit', '编辑', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623378765, 1628090697, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (208, 'file', 203, 'data/history/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623378765, 1628090697, 0, 'normal');
+INSERT INTO `m_auth_rule` VALUES (209, 'file', 203, 'data/history/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623378765, 1628090697, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (210, 'file', 201, 'data/realtime/import', 'Import', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623395241, 1623395241, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (211, 'file', 201, 'data/realtime/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623395241, 1623395241, 0, 'normal');
 INSERT INTO `m_auth_rule` VALUES (212, 'file', 201, 'data/realtime/edit', '编辑', 'fa fa-circle-o', '', '', '', 0, NULL, '', 1623395241, 1623395241, 0, 'normal');
@@ -4229,17 +4144,11 @@ CREATE TABLE `m_building`  (
   `update_time` int(11) NULL DEFAULT 0 COMMENT '更新时间',
   `delete_time` int(11) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '楼表' ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '楼表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_building
 -- ----------------------------
-INSERT INTO `m_building` VALUES (1, 3, '1号楼', '1', 1623226845, 1623226845, NULL);
-INSERT INTO `m_building` VALUES (2, 3, '2号楼', '1', 1623226858, 1623226858, NULL);
-INSERT INTO `m_building` VALUES (3, 2, '一号楼', '1', 1623397101, 1623397101, NULL);
-INSERT INTO `m_building` VALUES (4, 2, '2号楼', '1', 1623397109, 1623397109, NULL);
-INSERT INTO `m_building` VALUES (5, 1, '一号楼', '1', 1623397339, 1623397339, NULL);
-INSERT INTO `m_building` VALUES (6, 1, '二号楼', '1', 1623397348, 1623397348, NULL);
 
 -- ----------------------------
 -- Table structure for m_company
@@ -4248,21 +4157,18 @@ DROP TABLE IF EXISTS `m_company`;
 CREATE TABLE `m_company`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '单位名称',
+  `IPC_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '工控机id',
   `status` enum('-1','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '1' COMMENT '启用状态:1=启用,-1=禁用',
+  `data_storage_time` int(11) UNSIGNED NULL DEFAULT 0 COMMENT '数据存储时间（天）',
   `create_time` int(11) NULL DEFAULT 0 COMMENT '创建时间',
   `update_time` int(11) NULL DEFAULT 0 COMMENT '更新时间',
   `delete_time` int(11) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '单位表' ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '单位表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_company
 -- ----------------------------
-INSERT INTO `m_company` VALUES (1, '浙江省人民医院', '1', 0, 0, NULL);
-INSERT INTO `m_company` VALUES (2, '杭州市第一医院', '1', 0, 0, NULL);
-INSERT INTO `m_company` VALUES (3, '杭州口腔医院', '1', 0, 0, NULL);
-INSERT INTO `m_company` VALUES (4, '杭州市中医院', '1', 0, 0, NULL);
-INSERT INTO `m_company` VALUES (5, '浙江省中医院', '1', 1623226618, 1623226618, NULL);
 
 -- ----------------------------
 -- Table structure for m_config
@@ -4282,7 +4188,7 @@ CREATE TABLE `m_config`  (
   `setting` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '配置',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '系统配置' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '系统配置' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_config
@@ -4327,13 +4233,11 @@ CREATE TABLE `m_crontab`  (
   `weigh` int(10) NOT NULL DEFAULT 0 COMMENT '权重',
   `status` enum('completed','expired','hidden','normal') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'normal' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_crontab
 -- ----------------------------
-INSERT INTO `m_crontab` VALUES (1, 'url', '请求百度', 'https://www.baidu.com', '* * * * *', 0, 0, 0, 1497070825, 1501253101, 1483200000, 1830268800, 1501253101, 1, 'normal');
-INSERT INTO `m_crontab` VALUES (2, 'sql', '查询一条SQL', 'SELECT 1;', '* * * * *', 0, 0, 0, 1497071095, 1501253101, 1483200000, 1830268800, 1501253101, 2, 'normal');
 
 -- ----------------------------
 -- Table structure for m_crontab_log
@@ -4348,7 +4252,7 @@ CREATE TABLE `m_crontab_log`  (
   `status` enum('success','failure') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'failure' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `crontab_id`(`crontab_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务日志表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_crontab_log
@@ -4359,32 +4263,17 @@ CREATE TABLE `m_crontab_log`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `m_data`;
 CREATE TABLE `m_data`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `equipment_id` int(11) NOT NULL DEFAULT 0 COMMENT '设备id',
-  `company_id` int(11) NOT NULL DEFAULT 0 COMMENT '单位id',
-  `building_id` int(11) NOT NULL DEFAULT 0 COMMENT '楼id',
-  `floor_id` int(11) NOT NULL DEFAULT 0 COMMENT '层id',
-  `monitor_object` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '监测对象',
-  `type` int(11) NOT NULL DEFAULT 1 COMMENT '类型：1=压力设备，2=流量设备',
-  `value` int(10) NOT NULL DEFAULT 0 COMMENT '值',
-  `unit` int(4) UNSIGNED NOT NULL DEFAULT 1 COMMENT '计量单位:1=MPa,2=L,3=m3',
-  `decimal_offset` int(4) UNSIGNED NOT NULL DEFAULT 0 COMMENT '小数点偏移',
-  `effective_range` int(4) UNSIGNED NULL DEFAULT NULL COMMENT '有效量程:1=0-25,2=0-1.6,3=0- -0.1',
+  `id` bigint(64) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `IPC_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '工控机id',
+  `equipment_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '设备id',
+  `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '值',
   `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '数据表' ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '数据表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_data
 -- ----------------------------
-INSERT INTO `m_data` VALUES (1, 1, 3, 1, 4, '压力', 1, 20, 1, 0, 1, 1623739532);
-INSERT INTO `m_data` VALUES (2, 1, 3, 1, 4, '压力', 1, 22, 1, 0, 1, 1623741709);
-INSERT INTO `m_data` VALUES (3, 3, 1, 5, 9, '负压', 1, -13, 1, 3, 3, 1623741709);
-INSERT INTO `m_data` VALUES (4, 3, 1, 5, 9, '负压', 1, -15, 1, 3, 3, 1623743076);
-INSERT INTO `m_data` VALUES (5, 2, 1, 5, 9, '流量', 2, 100, 2, 0, NULL, 1623743076);
-INSERT INTO `m_data` VALUES (6, 2, 1, 5, 9, '流量', 2, 90, 2, 0, NULL, 1623743730);
-INSERT INTO `m_data` VALUES (7, 2, 1, 5, 9, '流量', 2, 120, 2, 0, NULL, 1623743764);
-INSERT INTO `m_data` VALUES (8, 2, 1, 5, 9, '流量', 2, 110, 2, 0, NULL, 1623743804);
 
 -- ----------------------------
 -- Table structure for m_ems
@@ -4399,7 +4288,7 @@ CREATE TABLE `m_ems`  (
   `ip` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT 'IP',
   `createtime` int(10) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '邮箱验证码表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '邮箱验证码表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_ems
@@ -4411,17 +4300,16 @@ CREATE TABLE `m_ems`  (
 DROP TABLE IF EXISTS `m_equipment`;
 CREATE TABLE `m_equipment`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `instrument_type` int(11) NOT NULL DEFAULT 1 COMMENT '仪表类型:1=压力表,2=流量表',
-  `equipment_addr` int(11) NULL DEFAULT 0 COMMENT '设备地址（0-255）',
+  `equipment_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '设备唯一id',
+  `instrument_type` enum('1','2') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1' COMMENT '仪表类型:1=压力表,2=流量表',
   `monitor_object` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '监测对象',
-  `gateway_addr` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '网关地址（中控机）',
   `HIAL` int(11) NULL DEFAULT NULL COMMENT '报警上限',
   `LoAL` int(11) NULL DEFAULT NULL COMMENT '报警下限',
-  `effective_range` int(10) NULL DEFAULT NULL COMMENT '有效量程:1=0-25,2=0-1.6,3=0- -0.1',
-  `unit` int(11) NULL DEFAULT 1 COMMENT '计量单位：1=MPa，2=L，3=m3',
+  `effective_range` enum('1','2','3','0') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '有效量程:1=0-25,2=0-1.6,3=0- -0.1',
+  `unit` enum('1','2','3') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '1' COMMENT '计量单位:1=MPa，2=L，3=m3',
   `decimal_offset` int(11) NULL DEFAULT 0 COMMENT '小数点偏移',
   `alias` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '别名',
-  `status` int(11) NULL DEFAULT 1 COMMENT '启用状态:1=启用,-1=禁用',
+  `status` enum('1','-1') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '1' COMMENT '启用状态:1=启用,-1=禁用',
   `company_id` int(11) NOT NULL DEFAULT 0 COMMENT '单位id',
   `building_id` int(11) NULL DEFAULT 0 COMMENT '楼id',
   `floor_id` int(11) NULL DEFAULT 0 COMMENT '层id',
@@ -4429,14 +4317,11 @@ CREATE TABLE `m_equipment`  (
   `update_time` int(11) NOT NULL DEFAULT 0 COMMENT '修改时间',
   `delete_time` int(11) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '设备表' ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '设备表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_equipment
 -- ----------------------------
-INSERT INTO `m_equipment` VALUES (1, 1, 1, '压力', '9300', 20, 1, 1, 1, 2, '', 1, 3, 1, 4, 1623231278, 1623232225, NULL);
-INSERT INTO `m_equipment` VALUES (2, 2, 222, '气体流量', '9301', 200, 1, NULL, 2, 2, '', 1, 1, 5, 9, 1623739081, 1623739081, NULL);
-INSERT INTO `m_equipment` VALUES (3, 1, 1, '负压', '9302', 0, 0, 3, 1, 1, '', 1, 1, 5, 9, 1623739336, 1623739336, NULL);
 
 -- ----------------------------
 -- Table structure for m_faqueue_jobs
@@ -4452,7 +4337,7 @@ CREATE TABLE `m_faqueue_jobs`  (
   `available_at` int(10) UNSIGNED NOT NULL,
   `created_at` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_faqueue_jobs
@@ -4470,7 +4355,7 @@ CREATE TABLE `m_faqueue_log`  (
   `create_time` int(10) NULL DEFAULT NULL COMMENT '开始执行时间',
   `update_time` int(10) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_faqueue_log
@@ -4490,21 +4375,11 @@ CREATE TABLE `m_floor`  (
   `update_time` int(11) NOT NULL DEFAULT 0 COMMENT '更新时间',
   `delete_time` int(11) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '层表' ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '层表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_floor
 -- ----------------------------
-INSERT INTO `m_floor` VALUES (4, 3, 1, '1层', '1', 1623229756, 1623229756, NULL);
-INSERT INTO `m_floor` VALUES (5, 2, 3, '1层', '1', 1623397121, 1623397121, NULL);
-INSERT INTO `m_floor` VALUES (6, 2, 3, '2层', '1', 1623397132, 1623397132, NULL);
-INSERT INTO `m_floor` VALUES (7, 2, 4, '1层', '1', 1623397142, 1623397142, NULL);
-INSERT INTO `m_floor` VALUES (8, 2, 4, '2层', '1', 1623397150, 1623397150, NULL);
-INSERT INTO `m_floor` VALUES (9, 1, 5, '1层', '1', 1623397358, 1623397358, NULL);
-INSERT INTO `m_floor` VALUES (10, 1, 5, '2层', '1', 1623397365, 1623397365, NULL);
-INSERT INTO `m_floor` VALUES (11, 1, 6, '1层', '1', 1623397372, 1623397372, NULL);
-INSERT INTO `m_floor` VALUES (12, 1, 6, '2层', '1', 1623397378, 1623397378, NULL);
-INSERT INTO `m_floor` VALUES (13, 1, 5, '3层', '1', 1623735971, 1623735971, NULL);
 
 -- ----------------------------
 -- Table structure for m_sms
@@ -4519,7 +4394,7 @@ CREATE TABLE `m_sms`  (
   `ip` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT 'IP',
   `createtime` int(10) UNSIGNED NULL DEFAULT 0 COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '短信验证码表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '短信验证码表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_sms
@@ -4562,7 +4437,7 @@ CREATE TABLE `m_test`  (
   `status` enum('normal','hidden') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'normal' COMMENT '状态',
   `state` enum('0','1','2') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1' COMMENT '状态值:0=禁用,1=正常,2=推荐',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '测试表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '测试表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_test
@@ -4592,7 +4467,7 @@ CREATE TABLE `m_third`  (
   UNIQUE INDEX `platform`(`platform`, `openid`) USING BTREE,
   INDEX `user_id`(`user_id`, `platform`) USING BTREE,
   INDEX `unionid`(`platform`, `unionid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '第三方登录表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '第三方登录表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_third
@@ -4615,7 +4490,7 @@ CREATE TABLE `m_version`  (
   `weigh` int(10) NOT NULL DEFAULT 0 COMMENT '权重',
   `status` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '版本表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '版本表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_version
@@ -4638,7 +4513,7 @@ CREATE TABLE `m_wechat_autoreply`  (
   `status` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `eventkey`(`eventkey`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '微信自动回复表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '微信自动回复表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_wechat_autoreply
@@ -4662,7 +4537,7 @@ CREATE TABLE `m_wechat_captcha`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `ip`(`ip`, `event`) USING BTREE,
   INDEX `openid`(`openid`(191), `event`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '微信公众号验证码' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '微信公众号验证码' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_wechat_captcha
@@ -4681,7 +4556,7 @@ CREATE TABLE `m_wechat_config`  (
   `updatetime` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '微信配置表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '微信配置表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_wechat_config
@@ -4706,7 +4581,7 @@ CREATE TABLE `m_wechat_context`  (
   `updatetime` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `openid`(`openid`, `eventkey`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '微信上下文表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '微信上下文表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_wechat_context
@@ -4728,7 +4603,7 @@ CREATE TABLE `m_wechat_response`  (
   `status` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `eventkey`(`eventkey`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '微信资源表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '微信资源表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of m_wechat_response

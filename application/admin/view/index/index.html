@@ -36,10 +36,15 @@
                     <iframe src="{$referermenu.url}?addtabs=1" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling-x="no" scrolling-y="auto" allowtransparency="yes"></iframe>
                 </div>
                 {/if}
+                <audio autoplay loop muted id="myPlay">
+                    <source src="/assets/js/backend/error.wav" type="audio/wav">
+                    您的浏览器不支持 audio 元素。
+                </audio>
             </div>
 
             <!-- 底部链接,默认隐藏 -->
             <footer class="main-footer hide">
+                <audio src="/assets/js/backend/error.wav" preload="auto" id="bgMusic"></audio>
                 <div class="pull-right hidden-xs">
                 </div>
                 <strong>Copyright &copy; 2017-2020 <a href="__PUBLIC__">{$site.name}</a>.</strong> All rights reserved.

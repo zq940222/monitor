@@ -5,8 +5,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'equipment/building/index' + location.search,
-                    add_url: 'equipment/building/add',
+                    index_url: 'equipment/building/index?ids=' + $("input[name=company_id]").val() + location.search,
+                    add_url: 'equipment/building/add?ids=' + $("input[name=company_id]").val(),
                     edit_url: 'equipment/building/edit',
                     del_url: 'equipment/building/del',
                     multi_url: 'equipment/building/multi',
@@ -32,7 +32,23 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'create_time', title: __('Create_time'), operate:false, addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
                         {field: 'update_time', title: __('Update_time'), operate:false, visible:false, addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
                         {field: 'delete_time', title: __('Delete_time'), operate:false, visible:false, addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
-                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
+                        {
+                            field: 'operate',
+                            width: "150px",
+                            title: __('Operate'),
+                            table: table,
+                            events: Table.api.events.operate,
+                            buttons: [
+                                {
+                                    name: 'addtabs',
+                                    title: __('层管理'),
+                                    classname: 'btn btn-xs btn-warning btn-addtabs',
+                                    text: '层管理',
+                                    url: 'equipment/floor/index'
+                                }
+                            ],
+                            formatter: Table.api.formatter.operate
+                        }
                     ]
                 ]
             });

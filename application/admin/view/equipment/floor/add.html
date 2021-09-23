@@ -1,13 +1,8 @@
 <form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
 
     <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">单位/楼:</label>
-        <div class="col-xs-12 col-sm-8">
-            <div class="form-inline" data-toggle="cxselect" data-selects="first,second" >
-                <select class="first form-control" name="row[company_id]" data-url="ajax/company" data-rule="required"></select>
-                <select class="second form-control" name="row[building_id]" data-url="ajax/building" data-query-name="company_id" data-rule="required"></select>
-            </div>
-        </div>
+        <input type="hidden" name="row[company_id]" value="{$building.company_id}">
+        <input type="hidden" name="row[building_id]" value="{$building.id}">
     </div>
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Name')}:</label>

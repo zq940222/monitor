@@ -62,19 +62,21 @@ class Realtime extends Backend
             ->where('instrument_type', 1)
             ->where('floor_id', $floorId)
             ->where('status', 1)
-            ->column('id');
+            ->column('equipment_id');
+        $floor = Db::name("floor")->find($floorId);
+        $company = Db::name("company")->find($floor['company_id']);
+        $IPC_id = $company['IPC_id'];
+        $list = [];
         if (!empty($equipments)) {
-            $sql = "select monitor_object,value,unit,decimal_offset,effective_range,create_time from
-              (select equipment_id,monitor_object,value,unit,decimal_offset,effective_range,create_time from `m_data` where equipment_id IN (" . implode(',', $equipments) . ") order by create_time desc limit 999999) a
-              GROUP BY a.equipment_id;";
-            $list = Db::query($sql);
-            //重新整理数据
-            //根据小数点偏移调整数值
-            foreach ($list as &$value) {
-                $value['data_value'] = $value['value'] / (pow(10, $value['decimal_offset']));
+            foreach ($equipments as $equipment) {
+                $data = Db::name("data")
+                    ->where("equipment_id", $equipment)
+                    ->where("IPC_id",$IPC_id)
+                    ->where("create_time", ">", time()-5 )
+                    ->order("create_time","desc")
+                    ->find();
+                $list[] = $data;
             }
-        } else {
-            $list = [];
         }
         $this->assign("list", $list);
         return $this->view->fetch();
@@ -88,14 +90,20 @@ class Realtime extends Backend
             ->where('instrument_type', 2)
             ->where('floor_id', $floorId)
             ->where('status', 1)
-            ->column('id');
+            ->column('equipment_id');
+        $floor = Db::name("floor")->find($floorId);
+        $company = Db::name("company")->find($floor['company_id']);
+        $IPC_id = $company['IPC_id'];
+        $list = [];
         if (!empty($equipments)) {
-            $sql = "select id, equipment_id, monitor_object,value,unit,decimal_offset,effective_range,create_time from
-              `m_data` where equipment_id IN (" . implode(',', $equipments) . ")
-              GROUP BY CONCAT(equipment_id,id % 2) order by create_time desc ";
-            $list = Db::query($sql);
-        } else {
-            $list = [];
+            foreach ($equipments as $equipment) {
+                $data = Db::name("data")->where("equipment_id", $equipment)
+                    ->where("IPC_id",$IPC_id)
+                    ->order("create_time","desc")
+                    ->limit(10)
+                    ->select();
+                $list[] = $data;
+            }
         }
         $this->assign("list", $list);
         return $this->view->fetch();

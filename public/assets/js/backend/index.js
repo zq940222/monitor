@@ -1,4 +1,4 @@
-define(['jquery', 'bootstrap', 'backend', 'addtabs', 'adminlte', 'form'], function ($, undefined, Backend, undefined, AdminLTE, Form) {
+define(['jquery', 'bootstrap', 'backend', 'addtabs', 'adminlte', 'form', 'toastr'], function ($, undefined, Backend, undefined, AdminLTE, Form, toastr) {
     var Controller = {
         index: function () {
             //双击重新加载页面
@@ -394,6 +394,40 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'adminlte', 'form'], functi
             });
         }
     };
-
+    //5秒钟自动执行一次，检查有没有报警信息
+    // $(function(){
+    //     function showAuto(){
+    //         //获取报警信息
+    //         $.ajax({
+    //             url:"Index/checkError",
+    //             type:"GET",
+    //             data:{},
+    //             success:function (res) {
+    //                 if (res.code) {
+    //                     $.each(res.data,function(i,item){
+    //                         toastr.error(item)
+    //                     });
+    //                     run();
+    //                 }
+    //             }
+    //         })
+    //     }
+    //     t = setInterval(showAuto, 6000);
+    // });
+    // var audio = document.getElementById('myPlay');
+    // var play = false;
+    // function run(){
+    //     if(play){
+    //         return false;
+    //     }
+    //     audio.currentTime = 0;//播放音频的起始时间
+    //     audio.volume = 0.5;//音频声音大小
+    //     audio.muted = false;//关闭静音状态
+    //     play = true;
+    //     setTimeout(function(){
+    //         play = false;
+    //         audio.muted = true;//播放完毕，开启静音状态
+    //     },3800);
+    // }
     return Controller;
 });

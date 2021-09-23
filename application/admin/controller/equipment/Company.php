@@ -11,6 +11,7 @@ use app\common\controller\Backend;
  */
 class Company extends Backend
 {
+    protected $noNeedLogin = ['searchlist'];
     
     /**
      * Company模型对象
@@ -35,6 +36,18 @@ class Company extends Backend
      * 因此在当前控制器中可不用编写增删改查的代码,除非需要自己控制这部分逻辑
      * 需要将application/admin/library/traits/Backend.php中对应的方法复制到当前控制器,然后进行修改
      */
-    
 
+    /**
+     * 搜索下拉列表
+     */
+    public function searchlist()
+    {
+        $result = $this->model->select();
+        $searchlist = [];
+        foreach ($result as $key => $value) {
+            $searchlist[] = ['id' => $value['id'], 'name' => $value['name']];
+        }
+        $data = ['searchlist' => $searchlist];
+        $this->success('', null, $data);
+    }
 }

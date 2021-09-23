@@ -2,7 +2,7 @@
     .building{
          border-radius: 5px;
          border: solid 2px #b9def0;
-         width: 80px;
+         width: 130px;
          height: 50px;
          text-align: center;
          line-height: 50px;
@@ -11,7 +11,7 @@
     .floor{
         border-radius: 5px;
         border: solid 2px #b9def0;
-        width: 80px;
+        width: 130px;
         height: 50px;
         text-align: center;
         line-height: 50px;
@@ -42,7 +42,7 @@
         </div>
     </div>
     <div id="pressure"></div>
-    <div id="flow"></div>
+    <div id="flow" style="clear: both"></div>
 </div>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -59,7 +59,7 @@
     function getData(floorId) {
         $.ajax({
             url:"ajax/getDataByFloorId",
-            type:"GET",
+            type:"POST",
             data:{floor_id:floorId},
             success:function (res) {
                 $("#pressure").empty();
@@ -67,16 +67,17 @@
                 let data = res.data;
                 let pressure = data['pressure'];
                 let flow = data['flow'];
-                console.log(pressure)
                 if (pressure.length > 0 ){
                     for (let i = 0; i < pressure.length; i++) {
-                        $("#pressure").append("<div id='pressure-"+i+"' style='height: 500px'></div>");
+                        $("#pressure").append("<div class='col-xs-4 col-sm-4'><h1 align='center'>"+pressure[i].monitor_object+"</h1><div  id='pressure-"+i+"' style='height: 300px'></div></div>");
                         //压力
                         var dom = document.getElementById("pressure-"+i);
                         var myChart = echarts.init(dom);
                         var option;
                         option = {
                             series: [{
+                                radius:'50%',
+                                clockwise:true,
                                 type: 'gauge',
                                 center: ["50%", "60%"],
                                 startAngle: 200,
@@ -85,19 +86,19 @@
                                 max: pressure[i].max,
                                 splitNumber: 10,
                                 itemStyle: {
-                                    color: '#FFAB91'
+                                    color: "#18bc9c"
                                 },
                                 progress: {
                                     show: true,
-                                    width: 30
+                                    width: 20
                                 },
 
                                 pointer: {
-                                    show: false,
+                                    show: true,
                                 },
                                 axisLine: {
                                     lineStyle: {
-                                        width: 30
+                                        width: 20
                                     }
                                 },
                                 axisTick: {
@@ -105,7 +106,7 @@
                                     splitNumber: 5,
                                     lineStyle: {
                                         width: 2,
-                                        color: '#999'
+                                        color: '#000'
                                     }
                                 },
                                 splitLine: {
@@ -113,13 +114,13 @@
                                     length: 14,
                                     lineStyle: {
                                         width: 3,
-                                        color: '#999'
+                                        color: '#000'
                                     }
                                 },
                                 axisLabel: {
                                     distance: -20,
-                                    color: '#999',
-                                    fontSize: 20
+                                    color: '#000',
+                                    fontSize: 10
                                 },
                                 anchor: {
                                     show: false
@@ -130,18 +131,30 @@
                                 detail: {
                                     valueAnimation: true,
                                     width: '60%',
-                                    lineHeight: 40,
+                                    lineHeight: 30,
                                     height: '15%',
                                     borderRadius: 8,
-                                    offsetCenter: [0, '-15%'],
-                                    fontSize: 40,
+                                    offsetCenter: [0, '60%'],
+                                    fontSize: 30,
                                     fontWeight: 'bolder',
-                                    formatter: '{value} MPa',
+                                    formatter: function (value) {
+                                        return '{value|' + value + '}{unit|MPa}';
+                                    },
+                                    rich: {
+                                        value: {
+                                            fontSize: 50,
+                                            fontWeight: 'bolder'
+                                        },
+                                        unit: {
+                                            fontSize: 20,
+                                            color: '#000',
+                                            padding: [0, 0, -20, 10]
+                                        }
+                                    },
                                     color: 'auto'
                                 },
                                 data: [{
-                                    value: pressure[i].data_value,
-                                    name:pressure[i].monitor_object
+                                    value: pressure[i].value
                                 }]
                             }],
                         };
@@ -151,24 +164,32 @@
                 }
                 if (flow.length > 0 ){
                     for (let i = 0; i < flow.length; i++) {
-                        $("#flow").append("<div id='flow-"+i+"' style='height: 500px'></div>");
+                        $("#flow").append("<div class='col-xs-8 col-sm-8'><h1 align='center'>"+flow[i].monitor_object+"</h1><div  id='flow-"+i+"' style='height: 300px'></div>" +
+                            "<h2 align='center'>瞬间流量 : " + flow[i].value[ flow[i].value.length - 1]+ " L</h2>" +
+                            "<h2 align='center'>总流量 : " + flow[i].total+ " m3</h2></div>");
                         //流量
                         var dom1 = document.getElementById("flow-"+i);
                         var myChart1 = echarts.init(dom1);
                         var option1;
                         option1 = {
+                            tooltip: {
+                                trigger: 'axis',
+                                //在这里设置
+                                formatter: '{c0}L'
+                            },
                             xAxis: {
                                 type: 'category',
                                 boundaryGap: false,
-                                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                                data: flow[i].time
                             },
                             yAxis: {
                                 type: 'value'
                             },
                             series: [{
-                                data: [820, 932, 901, 934, 1290, 1330, 1320],
+                                data: flow[i].value,
                                 type: 'line',
-                                areaStyle: {}
+                                areaStyle: {},
+                                color: '#87CEEB'
                             }]
                         };
 

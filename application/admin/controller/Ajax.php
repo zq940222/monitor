@@ -2,10 +2,11 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\Data;
+use app\admin\model\Floor;
 use app\common\controller\Backend;
 use app\common\exception\UploadException;
 use app\common\library\Upload;
-use fast\Random;
 use think\addons\Service;
 use think\Cache;
 use think\Config;
@@ -312,7 +313,7 @@ class Ajax extends Backend
     {
         $params = $this->request->get("row/a");
         if (!empty($params)) {
-            $company = isset($params['company_id']) ? $params['company_id'] : '';
+            $company = $params['company_id'] ?? '';
         } else {
             $company = $this->request->get('company_id', '');
         }
@@ -326,7 +327,7 @@ class Ajax extends Backend
     {
         $params = $this->request->get("row/a");
         if (!empty($params)) {
-            $building_id = isset($params['building_id']) ? $params['building_id'] : '';
+            $building_id = $params['building_id'] ?? '';
         } else {
             $building_id = $this->request->get('building_id', '');
         }
@@ -352,61 +353,126 @@ class Ajax extends Backend
         $this->success('', '', $list);
     }
 
+    public function getBuildingAndFloorByCompanyId()
+    {
+        $companyId =  $this->request->request('company_id', 0);
+        $list = model("building")->where('company_id', $companyId)
+            ->where("status", 1)
+            ->field('id,name')
+            ->with([
+                'floor' => function($query){
+                    $query->where("status",1)
+                        ->field("id, name, building_id");
+                }
+            ])
+            ->select();
+        $this->success("", "", $list);
+    }
+
     //通过层id获取数据
     public function getDataByFloorId()
     {
         $floorId = $this->request->request('floor_id', 0);
-        //查询该楼层启用的设备
-        //压力设备
-        $equipments1 = Db::name("equipment")
-            ->where('instrument_type', 1)
-            ->where('floor_id', $floorId)
-            ->where('status', 1)
-            ->column('id');
-        if (!empty($equipments1)) {
-            $sql = "select monitor_object,value,unit,decimal_offset,effective_range,create_time from
-              (select equipment_id,monitor_object,value,unit,decimal_offset,effective_range,create_time from `m_data` where equipment_id IN (" . implode(',', $equipments1) . ") order by create_time desc limit 999999) a
-              GROUP BY a.equipment_id;";
-            $list1 = Db::query($sql);
-            //重新整理数据
-            //根据小数点偏移调整数值
-            foreach ($list1 as &$value1) {
-                $value1['data_value'] = $value1['value'] / (pow(10, $value1['decimal_offset']));
-                if ($value1['effective_range'] == 1) {
-                    $value1['min'] = 0;
-                    $value1['max'] = 25;
-                }else if ($value1['effective_range'] == 2) {
-                    $value1['min'] = 0;
-                    $value1['max'] = 1.6;
-                }else {
-                    $value1['min'] = -0.1;
-                    $value1['max'] = 0;
+        //获取该楼层的单位信息和设备信息
+        $floor = Floor::where("status", 1)
+            ->field("id, company_id")->with([
+                "company" => function($query){
+                    $query->field("id, IPC_id");
+                },
+                "equipments" => function($query){
+                    $query->field("id, equipment_id, instrument_type, monitor_object, floor_id, effective_range")
+                        ->where("status", 1);
+                }
+            ])->find($floorId);
+        //所有设备列表
+        $equipmentLists = $floor->equipments;
+        //所有设备编号
+        $equipmentIds = array_column($equipmentLists, "equipment_id");
+        //获取该楼层数据
+        //30秒前时间戳
+        $beforeTime = time() - 30;
+        $data = Data::where("IPC_id", $floor->company->IPC_id)->where("equipment_id", "in", $equipmentIds)
+            ->where("create_time", ">", $beforeTime)->order("create_time","asc")->select();
+        //所有压力设备
+        $pressureLists = [];
+        //所有流量设备
+        $flowLists = [];
+        foreach ($equipmentLists as $equipmentList) {
+            if ($equipmentList['instrument_type'] == 1) {
+                $pressureLists[] = $equipmentList;
+            }
+            if ($equipmentList['instrument_type'] == 2) {
+                $flowLists[] = $equipmentList;
+            }
+        }
+        //重新组合数据
+        //压力数据
+        foreach ($pressureLists as &$pressureList) {
+            if ($pressureList['effective_range'] == 1) {
+                $pressureList['max'] = 25;
+                $pressureList['min'] = 0;
+            }
+            if ($pressureList['effective_range'] == 2) {
+                $pressureList['max'] = 1.6;
+                $pressureList['min'] = 0;
+            }
+            if ($pressureList['effective_range'] == 3){
+                $pressureList['max'] = 0;
+                $pressureList['min'] = -0.1;
+            }
+            $value = 0;
+            foreach ($data as $v){
+                if ($v['equipment_id'] == $pressureList['equipment_id']
+                && $v['create_time'] > (time() - 5)) {
+                    $value = json_decode($v['value'], true)[0];;
                 }
             }
-        } else {
-            $list1 = [];
+            $pressureList['value'] = $value;
         }
+        //流量数据
+        foreach ($flowLists as $flowList) {
+            $flowList['time'] = [
+                    date("H:i:s", (time() - 25)),
+                    date("H:i:s", (time() - 20)),
+                    date("H:i:s", (time() - 15)),
+                    date("H:i:s", (time() - 10)),
+                    date("H:i:s", (time() - 5)),
+                    date("H:i:s", time()),
+                ];
 
-
-        //流量设备
-        $equipments2 = Db::name("equipment")
-            ->where('instrument_type', 2)
-            ->where('floor_id', $floorId)
-            ->where('status', 1)
-            ->column('id');
-        if (!empty($equipments2)) {
-            $sql = "select id, equipment_id, monitor_object,value,unit,decimal_offset,effective_range,create_time from
-              `m_data` where equipment_id IN (" . implode(',', $equipments2) . ")
-              GROUP BY CONCAT(equipment_id,id % 5) order by create_time desc ";
-            $list2 = Db::query($sql);
-            //重组数据
-
-        } else {
-            $list2 = [];
+            $flowList['total'] = 0;
+            $valueList = ["0","0","0","0","0","0"];
+            foreach ($data as $v){
+                if ($v['equipment_id'] == $flowList['equipment_id']
+                && $v['create_time'] > (time() - 30) && $v['create_time'] < (time() - 25)) {
+                    $valueList[0] = json_decode($v['value'], true)[0];
+                }
+                if ($v['equipment_id'] == $flowList['equipment_id']
+                    && $v['create_time'] > (time() - 25) && $v['create_time'] < (time() - 20)) {
+                    $valueList[1] = json_decode($v['value'], true)[0];
+                }
+                if ($v['equipment_id'] == $flowList['equipment_id']
+                    && $v['create_time'] > (time() - 20) && $v['create_time'] < (time() - 15)) {
+                    $valueList[2] = json_decode($v['value'], true)[0];
+                }
+                if ($v['equipment_id'] == $flowList['equipment_id']
+                    && $v['create_time'] > (time() - 15) && $v['create_time'] < (time() - 10)) {
+                    $valueList[3] = json_decode($v['value'], true)[0];
+                }
+                if ($v['equipment_id'] == $flowList['equipment_id']
+                    && $v['create_time'] > (time() - 10) && $v['create_time'] < (time() - 5)) {
+                    $valueList[4] = json_decode($v['value'], true)[0];
+                }
+                if ($v['equipment_id'] == $flowList['equipment_id']
+                    && $v['create_time'] > (time() - 5) && $v['create_time'] < (time())) {
+                    $valueList[5] = json_decode($v['value'], true)[0];
+                    $flowList['total'] = json_decode($v['value'], true)[1];
+                }
+            }
+            $flowList['value'] = $valueList;
         }
-
-        $list['pressure'] = $list1;
-        $list['flow'] = $list2;
+        $list['pressure'] = $pressureLists;
+        $list['flow'] = $flowLists;
         $this->success('', '', $list);
     }
 }

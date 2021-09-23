@@ -6,7 +6,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form','echarts', 'echarts-th
             //查询可查询得楼号
             $.ajax({
                 url:"ajax/getBuildingByCompanyId",
-                type:"GET",
+                type:"POST",
                 data:{company_id:companyId},
                 success:function (res) {
                     if (res.code == 1){
@@ -19,7 +19,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form','echarts', 'echarts-th
                                 var buildingId = buildings[i]['id'];
                                 $.ajax({
                                     url:"ajax/getFloorByBuildingId",
-                                    type:"GET",
+                                    type:"POST",
                                     data:{building_id:buildingId},
                                     success:function (res) {
                                         if (res.code == 1){
@@ -76,7 +76,7 @@ $("#building").on('click','.building', function () {
     var buildingId = $(this).data('value');
     $.ajax({
         url:"ajax/getFloorByBuildingId",
-        type:"GET",
+        type:"POST",
         data:{building_id:buildingId},
         success:function (res) {
             if (res.code == 1){
@@ -106,8 +106,8 @@ $("#company").on("change", function () {
     var companyId = $("#company").val();
     //查询可查询得楼号
     $.ajax({
-        url:"ajax/getBuildingByCompanyId",
-        type:"GET",
+        url:"ajax/getBuildingAndFloorByCompanyId",
+        type:"POST",
         data:{company_id:companyId},
         success:function (res) {
             if (res.code == 1){
@@ -120,7 +120,7 @@ $("#company").on("change", function () {
                         var buildingId = buildings[i]['id'];
                         $.ajax({
                             url:"ajax/getFloorByBuildingId",
-                            type:"GET",
+                            type:"POST",
                             data:{building_id:buildingId},
                             success:function (res) {
                                 if (res.code == 1){

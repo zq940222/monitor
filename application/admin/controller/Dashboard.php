@@ -13,12 +13,23 @@ use app\common\controller\Backend;
 class Dashboard extends Backend
 {
 
+    protected $noNeedRight = ['checkError'];
+
     /**
      * 查看
      */
     public function index()
     {
+        $auth = $this->auth->getUserInfo();
+        $companyId = $auth['company_id'];
+        if (!empty($companyId)) {
+            $company = model("company")->find($companyId);
+        }else{
+            $company = ["name"=>""];
+        }
+        $this->assign(compact("company"));
         return $this->view->fetch();
     }
+
 
 }
