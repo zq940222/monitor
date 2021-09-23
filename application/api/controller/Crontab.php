@@ -16,10 +16,12 @@ class Crontab extends Api
     //删除无用数据
     public function deleteUnusedData()
     {
+        //删除6个月以上数据
         $expireTime = strtotime(date("Y-m-d", time())) - (6 * 30 * 24 * 60 * 60);
         model("Data")
             ->where("create_time", "<", $expireTime)
             ->delete();
+        //删除无关联单位的数据  只查询昨天一天数据
     }
 
     //定时删除时间范围外的数据
