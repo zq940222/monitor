@@ -431,17 +431,19 @@ class Ajax extends Backend
         }
         //流量数据
         foreach ($flowLists as $flowList) {
-            $flowList['time'] = [];
             $flowList['total'] = 0;
             $valueList = [];
+            $timeList = [];
             foreach ($data as $k => $v){
-                $valueList[] = json_decode($v['value'], true)[0];
-                $flowList['time'][] = date("H:i:s", $v['create_time']);
-                if ($k == $data.count() - 1) {
+                if ($v['equipment_id'] == $flowList['equipment_id']) {
+                    $valueList[] = json_decode($v['value'], true)[0];
+                    $timeList[] = date("H:i:s", $v['create_time']);
                     $flowList['total'] = json_decode($v['value'], true)[1];
                 }
+
             }
             $flowList['value'] = $valueList;
+            $flowList['time'] = $timeList;
         }
         $list['pressure'] = $pressureLists;
         $list['flow'] = $flowLists;
