@@ -423,7 +423,7 @@ class Ajax extends Backend
             $value = 0;
             foreach ($data as $v){
                 if ($v['equipment_id'] == $pressureList['equipment_id']
-                && $v['create_time'] > (time() - 5)) {
+                && $v['create_time'] > (time() - 10)) {
                     $value = json_decode($v['value'], true)[0];;
                 }
             }
@@ -431,41 +431,13 @@ class Ajax extends Backend
         }
         //流量数据
         foreach ($flowLists as $flowList) {
-            $flowList['time'] = [
-                    date("H:i:s", (time() - 25)),
-                    date("H:i:s", (time() - 20)),
-                    date("H:i:s", (time() - 15)),
-                    date("H:i:s", (time() - 10)),
-                    date("H:i:s", (time() - 5)),
-                    date("H:i:s", time()),
-                ];
-
+            $flowList['time'] = [];
             $flowList['total'] = 0;
-            $valueList = ["0","0","0","0","0","0"];
-            foreach ($data as $v){
-                if ($v['equipment_id'] == $flowList['equipment_id']
-                && $v['create_time'] > (time() - 30) && $v['create_time'] <= (time() - 25)) {
-                    $valueList[0] = json_decode($v['value'], true)[0];
-                }
-                if ($v['equipment_id'] == $flowList['equipment_id']
-                    && $v['create_time'] > (time() - 25) && $v['create_time'] <= (time() - 20)) {
-                    $valueList[1] = json_decode($v['value'], true)[0];
-                }
-                if ($v['equipment_id'] == $flowList['equipment_id']
-                    && $v['create_time'] > (time() - 20) && $v['create_time'] <= (time() - 15)) {
-                    $valueList[2] = json_decode($v['value'], true)[0];
-                }
-                if ($v['equipment_id'] == $flowList['equipment_id']
-                    && $v['create_time'] > (time() - 15) && $v['create_time'] <= (time() - 10)) {
-                    $valueList[3] = json_decode($v['value'], true)[0];
-                }
-                if ($v['equipment_id'] == $flowList['equipment_id']
-                    && $v['create_time'] > (time() - 10) && $v['create_time'] <= (time() - 5)) {
-                    $valueList[4] = json_decode($v['value'], true)[0];
-                }
-                if ($v['equipment_id'] == $flowList['equipment_id']
-                    && $v['create_time'] > (time() - 5) && $v['create_time'] <= (time())) {
-                    $valueList[5] = json_decode($v['value'], true)[0];
+            $valueList = [];
+            foreach ($data as $k => $v){
+                $valueList[] = json_decode($v['value'], true)[0];
+                $flowList['time'][] = date("H:i:s", $v['create_time']);
+                if ($k == $data.count() - 1) {
                     $flowList['total'] = json_decode($v['value'], true)[1];
                 }
             }

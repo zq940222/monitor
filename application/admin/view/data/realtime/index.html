@@ -164,8 +164,15 @@
                 }
                 if (flow.length > 0 ){
                     for (let i = 0; i < flow.length; i++) {
+                        var currentValue;
+                        if (flow[i].value[ flow[i].value.length - 1] == undefined) {
+                            currentValue = 0;
+                        } else {
+                            currentValue = flow[i].value[ flow[i].value.length - 1] ;
+                        }
+
                         $("#flow").append("<div class='col-xs-8 col-sm-8'><h1 align='center'>"+flow[i].monitor_object+"</h1><div  id='flow-"+i+"' style='height: 300px'></div>" +
-                            "<h2 align='center'>瞬间流量 : " + flow[i].value[ flow[i].value.length - 1]+ " L</h2>" +
+                            "<h2 align='center'>瞬间流量 : " + currentValue + " L </h2>" +
                             "<h2 align='center'>总流量 : " + flow[i].total+ " m3</h2></div>");
                         //流量
                         var dom1 = document.getElementById("flow-"+i);
