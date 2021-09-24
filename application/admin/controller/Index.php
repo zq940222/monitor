@@ -15,7 +15,7 @@ use think\Validate;
 class Index extends Backend
 {
 
-    protected $noNeedLogin = ['login'];
+    protected $noNeedLogin = ['login', 'checkError'];
     protected $noNeedRight = ['index', 'logout', 'checkError'];
     protected $layout = '';
 
@@ -119,57 +119,49 @@ class Index extends Backend
     {
         $auth = $this->auth->getUserInfo();
         $companyId = $auth['company_id'];
+        $companyId = 1;
         if (empty($companyId)) {
             $this->error("没有对应单位");
         }
         //查询该公司所有压力设备
+        $company = model("Company")->find($companyId);
         $equipments = model("Equipment")
 //            ->field("")
             ->relation(["company", "building", "floor"])
             ->where("company_id", $companyId)
             ->where("instrument_type", 1)
             ->where("status", 1)->select();
+        $equipmentIdList = array_column($equipments, "equipment_id");
         //检查所有设备5秒内数据有没有报警
         $errorMsgList = [];
+        $dataLists = model("data")
+            ->where("equipment_id", "in", $equipmentIdList)
+            ->where("IPC_id","=", $company['IPC_id'])
+            ->where("create_time", ">", time()-10 )
+            ->select();
         foreach ($equipments as $equipment) {
-            $errorMsgList[] = $this->getOnePressure($equipment['id'], $equipment['equipment_id'], $equipment['company']['IPC_id']);
+            if (!in_array($equipment['equipment_id'], array_column($dataLists, "equipment_id"))) {
+                $errorMsg = "楼:".$equipment['building']['name']."层:".$equipment['floor']['name']."检测对象:".$equipment['monitor_object']. " 0";
+                $errorMsgList[] =  $errorMsg;
+            }else {
+                foreach ($dataLists as $dataList) {
+                    if ($equipment['equipment_id'] == $dataList['equipment_id']){
+                        //检查数据是否在报警值外
+                        if ($dataList['value'] > $equipment['HIAL']) {
+                            //大于上限
+                            $errorMsg = "楼:".$equipment['building']['name']."层:".$equipment['floor']['name']."检测对象:".$equipment['monitor_object']." ".$dataList['value'];
+                            $errorMsgList[] =  $errorMsg;
+                        }
+                        if ($dataList['value'] < $equipment['LoAL']) {
+                            //小于下限
+                            $errorMsg = "楼:".$equipment['building']['name']."层:".$equipment['floor']['name']."检测对象:".$equipment['monitor_object']." ".$dataList['value'];
+                            $errorMsgList[] = $errorMsg;
+                        }
+                    }
+                }
+            }
+
         }
         $this->success("成功", "",$errorMsgList);
-    }
-
-    private function getOnePressure($id, $equipmentId, $IPC_id)
-    {
-        $equipment = model("equipment")
-            ->relation(["company", "building", "floor"])
-            ->find($id);
-        $data = model("data")
-            ->where("equipment_id", "=", $equipmentId)
-            ->where("IPC_id","=", $IPC_id)
-            ->where("create_time", ">", time()-5 )
-            ->order("create_time","desc")
-            ->find();
-        $errorMsg = "";
-        $buildingName = $equipment['building']['name'];
-        $floorName = $equipment['floor']['name'];
-        $monitorObject = $equipment['monitor_object'];
-        if (empty($equipment)) {
-            return "";
-        }
-        if (empty($data)) {
-            $errorMsg = "楼:".$buildingName.",层:".$floorName.",检测对象:".$monitorObject." 0";
-            return $errorMsg;
-        }
-        //检查数据是否在报警值外
-        if ($data['value'] > $equipment['HIAL']) {
-            //大于上限
-            $errorMsg = "楼:".$buildingName."层:".$floorName."检测对象:".$monitorObject." ".$data['value'];
-            return $errorMsg;
-        }
-        if ($data['value'] < $equipment['LoAL']) {
-            //小于下限
-            $errorMsg = "楼:".$buildingName."层:".$floorName."检测对象:".$monitorObject." ".$data['value'];
-            return $errorMsg;
-        }
-        return "";
     }
 }

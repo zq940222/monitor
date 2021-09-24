@@ -56,6 +56,7 @@
         let floorId = $(this).data('value');
         getData(floorId);
     });
+
     function getData(floorId) {
         $.ajax({
             url:"ajax/getDataByFloorId",
