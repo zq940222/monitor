@@ -119,14 +119,13 @@ class Index extends Backend
     {
         $auth = $this->auth->getUserInfo();
         $companyId = $auth['company_id'];
-        $companyId = 1;
         if (empty($companyId)) {
             $this->error("没有对应单位");
         }
         //查询该公司所有压力设备
         $company = model("Company")->find($companyId);
         $equipments = model("Equipment")
-//            ->field("")
+            ->field("equipment_id,HIAL,LoAL,company_id,building_id,floor_id")
             ->relation(["company", "building", "floor"])
             ->where("company_id", $companyId)
             ->where("instrument_type", 1)
