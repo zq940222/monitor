@@ -125,7 +125,7 @@ class Index extends Backend
         //查询该公司所有压力设备
         $company = model("Company")->find($companyId);
         $equipments = model("Equipment")
-            ->field("equipment_id,HIAL,LoAL,company_id,building_id,floor_id")
+            ->field("equipment_id,HIAL,LoAL,company_id,building_id,floor_id,monitor_object")
             ->relation(["company", "building", "floor"])
             ->where("company_id", $companyId)
             ->where("instrument_type", 1)
