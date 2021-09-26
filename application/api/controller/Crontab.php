@@ -5,6 +5,7 @@ namespace app\api\controller;
 
 
 use app\common\controller\Api;
+use think\Db;
 
 class Crontab extends Api
 {
@@ -45,5 +46,15 @@ class Crontab extends Api
         model("Data")->where("IPC_id", $IPC_id)
             ->where("create_time", "<", $expireTime)
             ->delete();
+    }
+
+    /**
+     * 添加data新表
+     */
+    public function addDataTable()
+    {
+        $today = date("Ymd", time());
+        $sql = "CREATE TABLE m_data_".$today." LIKE m_data;";
+        Db::query($sql);
     }
 }

@@ -9,8 +9,12 @@ class Data extends Model
 {
 
     
+    public function __construct($data = [])
+    {
+        parent::__construct($data);
+        $this->name = "data_".date('Ymd');
+    }
 
-    
 
     // 表名
     protected $name = 'data';
