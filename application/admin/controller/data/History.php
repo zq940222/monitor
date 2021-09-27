@@ -64,7 +64,7 @@ class History extends Backend
             if (!empty($filter) && isset($filter['day'])) {
                 $day = $filter['day'];
             }
-            $table = "data";
+            $table = "data_".date("Ymd", time());
             if (!empty($day)) {
                 $day = date("Ymd", strtotime($day));
                 $table = "data_".$day;
