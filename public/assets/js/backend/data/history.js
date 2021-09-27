@@ -22,6 +22,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
                 pk: 'id',
                 sortName: 'id',
+                searchFormVisible: true,
+                searchFormTemplate: 'customformtpl',
                 columns: [
                     [
                         {checkbox: true},
@@ -29,10 +31,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'IPC_id', title: __('Ipc_id'), operate: false},
                         {field: 'equipment_id', title: __('Equipment_id'), operate: false},
                         {field: 'value', title: __('值'), operate: false},
-                        {field: 'create_time', title: __('Create_time'), operate:'RANGE', addclass:'datetimerange', autocomplete:false, formatter: Table.api.formatter.datetime},
+                        {field: 'create_time', title: __('Create_time'), operate: false, formatter: Table.api.formatter.datetime},
                     ]
-                ],
-                searchFormVisible: true
+                ]
             });
 
             // 为表格绑定事件

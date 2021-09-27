@@ -3,6 +3,8 @@
 namespace app\admin\controller\data;
 
 use app\common\controller\Backend;
+use think\Db;
+use think\Exception;
 
 /**
  * 数据管理
@@ -48,7 +50,6 @@ class History extends Backend
             $company = model("Company")->find($companyId);
             $IPC_id = $company['IPC_id'];
         }
-
         //设置过滤方法
         $this->request->filter(['strip_tags', 'trim']);
         if ($this->request->isAjax()) {
@@ -57,18 +58,30 @@ class History extends Backend
                 return $this->selectpage();
             }
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
-
-            if (empty($IPC_id)) {
-                $list = $this->model
-                    ->where($where)
-                    ->order($sort, $order)
-                    ->paginate($limit);
-            }else{
-                $list = $this->model
-                    ->where($where)
-                    ->where("IPC_id" ,$IPC_id)
-                    ->order($sort, $order)
-                    ->paginate($limit);
+            $filter = $this->request->request("filter");
+            $day = "";
+            $filter = json_decode($filter, true);
+            if (!empty($filter) && isset($filter['day'])) {
+                $day = $filter['day'];
+            }
+            $table = "data";
+            if (!empty($day)) {
+                $day = date("Ymd", strtotime($day));
+                $table = "data_".$day;
+            }
+            try{
+                if (empty($IPC_id)) {
+                    $list = Db::name($table)
+                        ->order($sort, $order)
+                        ->paginate($limit);
+                }else{
+                    $list = Db::name($table)
+                        ->where("IPC_id" ,$IPC_id)
+                        ->order($sort, $order)
+                        ->paginate($limit);
+                }
+            }catch (Exception $exception) {
+                $this->error("该日期无数据");
             }
 
             //处理数据

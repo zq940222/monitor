@@ -11,8 +11,8 @@ class Data extends Model
     
     public function __construct($data = [])
     {
+        $this->name = "data_".date('Ymd',time());
         parent::__construct($data);
-        $this->name = "data_".date('Ymd');
     }
 
 
