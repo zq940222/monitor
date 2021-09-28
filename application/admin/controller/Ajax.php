@@ -390,7 +390,7 @@ class Ajax extends Backend
         $equipmentIds = array_column($equipmentLists, "equipment_id");
         //获取该楼层数据
         //30秒前时间戳
-        $beforeTime = time() - 30;
+        $beforeTime = time() - 55;
         $data = Data::where("IPC_id", $floor->company->IPC_id)->where("equipment_id", "in", $equipmentIds)
             ->where("create_time", ">", $beforeTime)->order("create_time","asc")->select();
         //所有压力设备
@@ -423,7 +423,7 @@ class Ajax extends Backend
             $value = 0;
             foreach ($data as $v){
                 if ($v['equipment_id'] == $pressureList['equipment_id']
-                && $v['create_time'] > (time() - 10)) {
+                && $v['create_time'] > (time() - 12)) {
                     $value = json_decode($v['value'], true)[0];;
                 }
             }

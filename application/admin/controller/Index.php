@@ -136,7 +136,7 @@ class Index extends Backend
         $dataLists = model("data")
             ->where("equipment_id", "in", $equipmentIdList)
             ->where("IPC_id","=", $company['IPC_id'])
-            ->where("create_time", ">", time()-10 )
+            ->where("create_time", ">", time()-12 )
             ->select();
         foreach ($equipments as $equipment) {
             if (!in_array($equipment['equipment_id'], array_column($dataLists, "equipment_id"))) {
@@ -161,6 +161,11 @@ class Index extends Backend
             }
 
         }
-        $this->success("成功", "",$errorMsgList);
+        if (empty($errorMsgList)){
+            $this->error("没有报警数据!");
+        }else{
+            $this->success("报警", "",$errorMsgList);
+        }
+
     }
 }

@@ -47,6 +47,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    var timer = null;
     //绑定层change事件
     $("#floor").on('click','.floor', function () {
         $(".floor").removeClass('btn-success');
@@ -57,6 +58,7 @@
         getData(floorId);
     });
     function getData(floorId) {
+        clearInterval(timer);
         $.ajax({
             url:"ajax/getDataByFloorId",
             type:"POST",
@@ -171,7 +173,7 @@
                             currentValue = flow[i].value[ flow[i].value.length - 1] ;
                         }
 
-                        $("#flow").append("<div class='col-xs-8 col-sm-8'><h1 align='center'>"+flow[i].monitor_object+"</h1><div  id='flow-"+i+"' style='height: 300px'></div>" +
+                        $("#flow").append("<div class='col-xs-8 col-sm-8' style='padding-top:100px'><h1 align='center'>"+flow[i].monitor_object+"</h1><div  id='flow-"+i+"' style='height: 300px'></div>" +
                             "<h2 align='center' id='current-value-"+i+"'>瞬间流量 : " + currentValue + " L </h2>" +
                             "<h2 align='center' id='total-"+i+"'>总流量 : " + flow[i].total+ " m3</h2></div>");
                         //流量
@@ -196,7 +198,7 @@
                                 data: flow[i].value,
                                 type: 'line',
                                 areaStyle: {},
-                                color: '#87CEEB'
+                                color: '#18bc9c'
                             }]
                         };
 
@@ -207,7 +209,7 @@
                 }
             }
         });
-        setInterval(function () {
+        timer = setInterval(function () {
             $.ajax({
                 url:"ajax/getDataByFloorId",
                 type:"POST",

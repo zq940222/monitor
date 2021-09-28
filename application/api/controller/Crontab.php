@@ -6,6 +6,7 @@ namespace app\api\controller;
 
 use app\common\controller\Api;
 use think\Db;
+use think\Exception;
 
 class Crontab extends Api
 {
@@ -63,17 +64,23 @@ class Crontab extends Api
             //查询要删除的数据
             $IPC_id = $item['IPC_id'];
             $data_storage_time = $item['data_storage_time'];
-            $expireTime = strtotime(date("Y-m-d", time())) - ($data_storage_time * 24 * 60 * 60);
-            $this->deleteData($expireTime, $IPC_id);
+            $this->deleteData($data_storage_time, $IPC_id);
         }
         $this->success("删除成功");
     }
 
-    private function deleteData($expireTime, $IPC_id)
+    private function deleteData($data_storage_time, $IPC_id)
     {
-        model("Data")->where("IPC_id", $IPC_id)
-            ->where("create_time", "<", $expireTime)
-            ->delete();
+        //查天数+1天的表
+        $day = $data_storage_time + 1;
+        $date = date("Ymd", strtotime(time(),"-$day day"));
+        $table = "data_".$date;
+        try {
+            Db::name($table)->where("IPC_id", $IPC_id)->delete();
+        }catch (Exception $exception) {
+            return "无可删除数据";
+        }
+
     }
 
     /**
