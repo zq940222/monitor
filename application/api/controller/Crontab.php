@@ -17,12 +17,40 @@ class Crontab extends Api
     //删除无用数据
     public function deleteUnusedData()
     {
-        //删除6个月以上数据
-        $expireTime = strtotime(date("Y-m-d", time())) - (6 * 30 * 24 * 60 * 60);
-        model("Data")
-            ->where("create_time", "<", $expireTime)
-            ->delete();
-        //删除无关联单位的数据  只查询昨天一天数据
+        //删除一分钟之前没有报警的数据
+        $beforeOneMinute = time() - 60;
+        $dataModel = new \app\admin\model\Data();
+        $dataLists = $dataModel->where('create_time', '<', $beforeOneMinute)->select();
+        $eqLists = model("Equipment")->field("id, equipment_id, instrument_type, HIAL, LoAL, company_id")
+            ->where("status", 1)
+            ->with([
+                'company' => function($query){
+                    $query->field("id, IPC_id");
+                }
+            ])->select();
+        //所有数据id
+        $dataIds = array_column($dataLists, "id");
+        //报警的数据的id
+        $ids = [];
+        foreach ($dataLists as $dataList) {
+            //找出压力数据 value字段 数组只有一个值的
+            $value = json_decode($dataList['value'], true);
+            if (count($value) != 1) {
+                continue;
+            }
+            foreach ($eqLists as $eqList) {
+                if ($dataList['equipment_id'] == $eqList['equipment_id'] &&
+                $dataList['IPC_id'] == $eqList['company']['IPC_id']) {
+                    if ($value < $eqList['LoAL'] || $value > $eqList['HIAL']) {
+                        $ids[] = $dataList['id'];
+                    }
+                }
+            }
+        }
+        //所有数据id 和报警数据id 的差集
+        $delIds = array_diff($dataIds, $ids);
+        $res = $dataModel->where("id", "in", $delIds)->delete();
+        $this->success("删除成功", $res);
     }
 
     //定时删除时间范围外的数据
@@ -38,7 +66,7 @@ class Crontab extends Api
             $expireTime = strtotime(date("Y-m-d", time())) - ($data_storage_time * 24 * 60 * 60);
             $this->deleteData($expireTime, $IPC_id);
         }
-        $this->success("成功");
+        $this->success("删除成功");
     }
 
     private function deleteData($expireTime, $IPC_id)
