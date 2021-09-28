@@ -72,7 +72,7 @@ class Realtime extends Backend
                 $data = Db::name("data")
                     ->where("equipment_id", $equipment)
                     ->where("IPC_id",$IPC_id)
-                    ->where("create_time", ">", time()-5 )
+                    ->where("create_time", ">", time() - 12 )
                     ->order("create_time","desc")
                     ->find();
                 $list[] = $data;
