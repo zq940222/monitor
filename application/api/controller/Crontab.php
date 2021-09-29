@@ -42,7 +42,7 @@ class Crontab extends Api
             foreach ($eqLists as $eqList) {
                 if ($dataList['equipment_id'] == $eqList['equipment_id'] &&
                 $dataList['IPC_id'] == $eqList['company']['IPC_id']) {
-                    if ($value < $eqList['LoAL'] || $value > $eqList['HIAL']) {
+                    if ($value[0] < $eqList['LoAL'] || $value[0] > $eqList['HIAL']) {
                         $ids[] = $dataList['id'];
                     }
                 }

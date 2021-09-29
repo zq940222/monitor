@@ -20,6 +20,8 @@ class History extends Backend
      */
     protected $model = null;
 
+    protected $searchFields = 'equipment_id';
+
     public function _initialize()
     {
         parent::_initialize();
@@ -59,6 +61,7 @@ class History extends Backend
             }
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             $filter = $this->request->request("filter");
+            $search = $this->request->request("search");
             $day = "";
             $filter = json_decode($filter, true);
             if (!empty($filter) && isset($filter['day'])) {
@@ -72,16 +75,19 @@ class History extends Backend
             try{
                 if (empty($IPC_id)) {
                     $list = Db::name($table)
+                        ->where("equipment_id", "like", "%$search%")
                         ->order($sort, $order)
                         ->paginate($limit);
                 }else{
                     $list = Db::name($table)
+                        ->where("equipment_id", "like", "%$search%")
                         ->where("IPC_id" ,$IPC_id)
                         ->order($sort, $order)
                         ->paginate($limit);
                 }
             }catch (Exception $exception) {
-                $this->error("该日期无数据");
+                $result = array("total" => 0, "rows" => []);
+                return json($result);
             }
 
             //处理数据

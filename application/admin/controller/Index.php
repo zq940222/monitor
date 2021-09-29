@@ -137,6 +137,7 @@ class Index extends Backend
             ->where("equipment_id", "in", $equipmentIdList)
             ->where("IPC_id","=", $company['IPC_id'])
             ->where("create_time", ">", time()-12 )
+            ->group("equipment_id")
             ->select();
         foreach ($equipments as $equipment) {
             if (!in_array($equipment['equipment_id'], array_column($dataLists, "equipment_id"))) {
@@ -145,15 +146,17 @@ class Index extends Backend
             }else {
                 foreach ($dataLists as $dataList) {
                     if ($equipment['equipment_id'] == $dataList['equipment_id']){
+                        $v = json_decode($dataList['value'], true)[0];
                         //检查数据是否在报警值外
-                        if ($dataList['value'] > $equipment['HIAL']) {
+                        if ($v > $equipment['HIAL']) {
                             //大于上限
-                            $errorMsg = "楼:".$equipment['building']['name']."层:".$equipment['floor']['name']."检测对象:".$equipment['monitor_object']." ".$dataList['value'];
+                            $errorMsg = "楼:".$equipment['building']['name']."层:".$equipment['floor']['name']."检测对象:".$equipment['monitor_object']." ".$v;
                             $errorMsgList[] =  $errorMsg;
+                            continue;
                         }
-                        if ($dataList['value'] < $equipment['LoAL']) {
+                        if ($v < $equipment['LoAL']) {
                             //小于下限
-                            $errorMsg = "楼:".$equipment['building']['name']."层:".$equipment['floor']['name']."检测对象:".$equipment['monitor_object']." ".$dataList['value'];
+                            $errorMsg = "楼:".$equipment['building']['name']."层:".$equipment['floor']['name']."检测对象:".$equipment['monitor_object']." ".$v;
                             $errorMsgList[] = $errorMsg;
                         }
                     }

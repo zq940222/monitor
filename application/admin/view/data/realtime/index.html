@@ -71,7 +71,7 @@
                 let flow = data['flow'];
                 if (pressure.length > 0 ){
                     for (let i = 0; i < pressure.length; i++) {
-                        $("#pressure").append("<div class='col-xs-4 col-sm-4'><h1 align='center'>"+pressure[i].monitor_object+"</h1><div  id='pressure-"+i+"' style='height: 300px'></div></div>");
+                        $("#pressure").append("<div class='col-xs-4 col-sm-4' style='padding-top: 100px'><h1 align='center'>"+pressure[i].monitor_object+"</h1><div  id='pressure-"+i+"' style='height: 300px'></div></div>");
                         //压力
                         var dom = document.getElementById("pressure-"+i);
                         var myChart = echarts.init(dom);
@@ -136,7 +136,7 @@
                                     lineHeight: 30,
                                     height: '15%',
                                     borderRadius: 8,
-                                    offsetCenter: [0, '60%'],
+                                    offsetCenter: [0, '100%'],
                                     fontSize: 30,
                                     fontWeight: 'bolder',
                                     formatter: function (value) {
@@ -174,8 +174,8 @@
                         }
 
                         $("#flow").append("<div class='col-xs-8 col-sm-8' style='padding-top:100px'><h1 align='center'>"+flow[i].monitor_object+"</h1><div  id='flow-"+i+"' style='height: 300px'></div>" +
-                            "<h2 align='center' id='current-value-"+i+"'>瞬间流量 : " + currentValue + " L </h2>" +
-                            "<h2 align='center' id='total-"+i+"'>总流量 : " + flow[i].total+ " m3</h2></div>");
+                            "<h2 align='center' id='current-value-"+i+"'>瞬间流量 : <span style='font-size:50px;color:#18bc9c '>" + currentValue + "</span> L </h2>" +
+                            "<h2 align='center' id='total-"+i+"'>总流量 : <span style='font-size:50px;color:#18bc9c '>" + flow[i].total+ "</span> m3</h2></div>");
                         //流量
                         var dom1 = document.getElementById("flow-"+i);
                         var myChart1 = echarts.init(dom1);
@@ -284,7 +284,7 @@
                                         lineHeight: 30,
                                         height: '15%',
                                         borderRadius: 8,
-                                        offsetCenter: [0, '60%'],
+                                        offsetCenter: [0, '100%'],
                                         fontSize: 30,
                                         fontWeight: 'bolder',
                                         formatter: function (value) {
@@ -320,8 +320,8 @@
                             } else {
                                 currentValue = flow[i].value[ flow[i].value.length - 1] ;
                             }
-                            $("#current-value-"+i).html("瞬间流量 : " + currentValue + " L");
-                            $("#total-"+i).html("总流量 : " + flow[i].total+ " m3")
+                            $("#current-value-"+i).html("瞬间流量 : <span style='font-size:50px;color:#18bc9c '>" + currentValue + "</span> L");
+                            $("#total-"+i).html("总流量 : <span style='font-size:50px;color:#18bc9c '>" + flow[i].total+ "</span> m3")
                             //流量
                             var dom1 = document.getElementById("flow-"+i);
                             var myChart1 = echarts.init(dom1);

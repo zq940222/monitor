@@ -24,6 +24,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 sortName: 'id',
                 searchFormVisible: true,
                 searchFormTemplate: 'customformtpl',
+                exportTypes: ["excel"],
                 columns: [
                     [
                         {checkbox: true},
