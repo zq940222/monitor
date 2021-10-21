@@ -1,17 +1,19 @@
 <style>
     .building{
+        padding: 0;
          border-radius: 5px;
          border: solid 2px #b9def0;
-         width: 130px;
+         width: 100px;
          height: 50px;
          text-align: center;
          line-height: 50px;
          margin: 5px;
      }
     .floor{
+        padding: 0;
         border-radius: 5px;
         border: solid 2px #b9def0;
-        width: 130px;
+        width: 100px;
         height: 50px;
         text-align: center;
         line-height: 50px;
@@ -71,7 +73,7 @@
                 let flow = data['flow'];
                 if (pressure.length > 0 ){
                     for (let i = 0; i < pressure.length; i++) {
-                        $("#pressure").append("<div class='col-xs-4 col-sm-4' style='padding-top: 100px'><h1 align='center'>"+pressure[i].monitor_object+"</h1><div  id='pressure-"+i+"' style='height: 300px'></div></div>");
+                        $("#pressure").append("<div class='col-xs-12 col-sm-4' style='padding-top: 100px'><h1 align='center'>"+pressure[i].monitor_object+"</h1><div align='center' id='pressure-"+i+"' style='height: 300px'></div></div>");
                         //压力
                         var dom = document.getElementById("pressure-"+i);
                         var myChart = echarts.init(dom);
@@ -173,7 +175,7 @@
                             currentValue = flow[i].value[ flow[i].value.length - 1] ;
                         }
 
-                        $("#flow").append("<div class='col-xs-8 col-sm-8' style='padding-top:100px'><h1 align='center'>"+flow[i].monitor_object+"</h1><div  id='flow-"+i+"' style='height: 300px'></div>" +
+                        $("#flow").append("<div class='col-xs-8 col-sm-8' style='padding-top:100px'><h1 align='center'>"+flow[i].monitor_object+"</h1><div align='center' id='flow-"+i+"' style='height: 300px'></div>" +
                             "<h2 align='center' id='current-value-"+i+"'>瞬间流量 : <span style='font-size:50px;color:#18bc9c '>" + currentValue + "</span> L </h2>" +
                             "<h2 align='center' id='total-"+i+"'>总流量 : <span style='font-size:50px;color:#18bc9c '>" + flow[i].total+ "</span> m3</h2></div>");
                         //流量
@@ -355,7 +357,7 @@
                     }
                 }
             });
-        }, 5000)
+        }, 7000)
     }
 </script>
 

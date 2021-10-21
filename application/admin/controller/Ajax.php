@@ -423,7 +423,7 @@ class Ajax extends Backend
             $value = 0;
             foreach ($data as $v){
                 if ($v['equipment_id'] == $pressureList['equipment_id']
-                && $v['create_time'] > (time() - 12)) {
+                && $v['create_time'] > (time() - 16)) {
                     $value = json_decode($v['value'], true)[0];;
                 }
             }
